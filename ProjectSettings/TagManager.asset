@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Sercher
+  - PunchArea
+  - EnemyPunchArea
   layers:
   - Default
   - TransparentFX
