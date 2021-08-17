@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     float moveSpeed;
-    [SerializeField] float walkSpeed = 5;
+    [SerializeField] float walkSpeed = 10;
     float runSpeed = 0;
     bool isRun;
     Rigidbody playerBody;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         //inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (isRun)
         {
-            runSpeed = 2;
+            runSpeed = 1.5f;
         }
         else
         {
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerBody.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            playerBody.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -50,19 +50,42 @@ public class PlayerController : MonoBehaviour
         //transform.position += inputDirection * moveSpeed * Time.deltaTime;
         if (Input.GetKey(KeyCode.W))
         {
-            playerBody.AddForce(transform.forward * 15 * runSpeed);
+            //playerBody.AddForce(transform.forward * 15 * runSpeed);
+            transform.position += transform.forward / 5 * runSpeed;
         }
+        else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            transform.position += new Vector3(0, 0, 0);
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
-            playerBody.AddForce(transform.right * -15 * runSpeed);
+            //playerBody.AddForce(transform.right * -15 * runSpeed);
+            transform.position += -transform.right / 5 * runSpeed;
         }
+        else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            transform.position += new Vector3(0, 0, 0);
+        }
+
         if (Input.GetKey(KeyCode.S))
         {
-            playerBody.AddForce(transform.forward * -15 * runSpeed);
+            //playerBody.AddForce(transform.forward * -15 * runSpeed);
+            transform.position += -transform.forward / 5 * runSpeed;
         }
+        else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            transform.position += new Vector3(0, 0, 0);
+        }
+
         if (Input.GetKey(KeyCode.D))
         {
-            playerBody.AddForce(transform.right * 15 * runSpeed);
+            //playerBody.AddForce(transform.right * 15 * runSpeed);
+            transform.position += transform.right / 5 * runSpeed;
+        }
+        else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
+        {
+            transform.position += new Vector3(0, 0, 0);
         }
     }
 }
