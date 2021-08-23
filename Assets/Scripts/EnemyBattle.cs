@@ -50,11 +50,20 @@ public class EnemyBattle : MonoBehaviour
 
     public void PunchDamaged()
     {
+        damagedHp = 2;
+        hp -= damagedHp;
+        damagedHpText_go.SetActive(true);
+        damagedHpText.text = damagedHp.ToString();
+        Invoke("DamagedHPFalse",2);
+    }
+
+    public void GunDamaged()
+    {
         damagedHp = 5;
         hp -= damagedHp;
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
-        Invoke("DamagedHPFalse",3);
+        Invoke("DamagedHPFalse", 2);
     }
 
     void DamagedHPFalse()

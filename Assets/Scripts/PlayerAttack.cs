@@ -12,6 +12,9 @@ public class PlayerAttack : MonoBehaviour
 
     private GameObject targetObj;
 
+    [SerializeField]
+    private GameObject bullet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (punch_m)
             {
@@ -30,6 +33,22 @@ public class PlayerAttack : MonoBehaviour
                     PunchAtttack();
                 }
             }
+            if (gun_m)
+            {
+                GameObject bullet_g = Instantiate(bullet, transform.position, Quaternion.identity);
+                bullet_g.GetComponent<PlayerBulletSystem>().mother = this.gameObject;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            punch_m = true;
+            gun_m = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            punch_m = false;
+            gun_m = true;
         }
     }
 
