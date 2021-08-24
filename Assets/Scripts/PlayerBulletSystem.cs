@@ -11,6 +11,7 @@ public class PlayerBulletSystem : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(mother.transform.forward * 40 + new Vector3(0, 2, 0), ForceMode.Impulse);
+        Invoke("AutoDestroy", 3);
     }
 
     // Update is called once per frame
@@ -26,5 +27,13 @@ public class PlayerBulletSystem : MonoBehaviour
             other.GetComponent<EnemyBattle>().GunDamaged();
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "Ground")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    void AutoDestroy()
+    {
+        Destroy(this.gameObject);
     }
 }

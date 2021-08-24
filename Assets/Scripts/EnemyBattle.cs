@@ -29,6 +29,12 @@ public class EnemyBattle : MonoBehaviour
     [SerializeField]
     private Text damagedHpText;
 
+
+    [SerializeField]
+    private int raunchInterval;
+
+    [SerializeField]
+    private int punchInterval;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +51,10 @@ public class EnemyBattle : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(target.transform.position - transform.position), 0.3f);
             transform.localPosition += transform.forward * speed;
+        }
+        if (hp < 0)
+        {
+
         }
     }
 
@@ -107,7 +117,7 @@ public class EnemyBattle : MonoBehaviour
         {
             while (true)
             {
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(raunchInterval);
                 GameObject arrow_g = Instantiate(arrow, transform.position, Quaternion.identity);
                 arrow_g.GetComponent<BulletSystem>().mother = this.gameObject;
             }
@@ -119,7 +129,7 @@ public class EnemyBattle : MonoBehaviour
         yield return null;
         if (punch_m)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(punchInterval);
             GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged();
         }
     }

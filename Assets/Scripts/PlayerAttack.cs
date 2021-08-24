@@ -15,10 +15,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private GameObject bullet;
 
+    private bool gunInterval;
+
     // Start is called before the first frame update
     void Start()
     {
         targetOn = false;
+        gunInterval = true;
     }
 
     // Update is called once per frame
@@ -33,10 +36,12 @@ public class PlayerAttack : MonoBehaviour
                     PunchAtttack();
                 }
             }
-            if (gun_m)
+            if (gun_m && gunInterval == true)
             {
                 GameObject bullet_g = Instantiate(bullet, transform.position, Quaternion.identity);
                 bullet_g.GetComponent<PlayerBulletSystem>().mother = this.gameObject;
+                gunInterval = false;
+                StartCoroutine("Interval");
             }
         }
 
@@ -73,5 +78,11 @@ public class PlayerAttack : MonoBehaviour
     void PunchAtttack()
     {
         targetObj.GetComponent<EnemyBattle>().PunchDamaged();
+    }
+
+    private IEnumerator Interval()
+    {
+        yield return new WaitForSeconds(3);
+        gunInterval = true;
     }
 }

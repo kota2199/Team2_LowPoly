@@ -8,6 +8,7 @@ TagManager:
   - Sercher
   - PunchArea
   - EnemyPunchArea
+  - Ground
   layers:
   - Default
   - TransparentFX
