@@ -41,16 +41,28 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void ArrowDamaged()
+    public void ArrowDamaged_Lv1()
     {
-        hp -= 1;
+        hp -= 5;
     }
 
-    public void PunchDamaged()
+    public void PunchDamaged_Lv1()
     {
         if (punch)
         {
-            hp -= 2;
+            hp -= 3;
+        }
+    }
+    public void ArrowDamaged_Lv2()
+    {
+        hp -= 6;
+    }
+
+    public void PunchDamaged_Lv2()
+    {
+        if (punch)
+        {
+            hp -= 4;
         }
     }
 }

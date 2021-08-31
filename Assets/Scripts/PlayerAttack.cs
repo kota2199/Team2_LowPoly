@@ -77,6 +77,14 @@ public class PlayerAttack : MonoBehaviour
 
     void PunchAtttack()
     {
+        if (GetComponent<PayerLeveling>().myLevel == 1)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 2;
+        }
+        if (GetComponent<PayerLeveling>().myLevel >= 2)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 3;
+        }
         targetObj.GetComponent<EnemyBattle>().PunchDamaged();
     }
 

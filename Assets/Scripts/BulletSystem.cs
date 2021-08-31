@@ -24,7 +24,15 @@ public class BulletSystem : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<BattleSystem>().ArrowDamaged();
+            if (mother.GetComponent<EnemyBattle>().lv == 1)
+            {
+                other.GetComponent<BattleSystem>().ArrowDamaged_Lv1();
+            }
+
+            if (mother.GetComponent<EnemyBattle>().lv <= 2)
+            {
+                other.GetComponent<BattleSystem>().ArrowDamaged_Lv2();
+            }
             Destroy(this.gameObject);
         }
 

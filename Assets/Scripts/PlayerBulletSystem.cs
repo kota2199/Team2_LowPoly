@@ -24,6 +24,7 @@ public class PlayerBulletSystem : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            other.GetComponent<EnemyBattle>().damagedHp = 5;
             other.GetComponent<EnemyBattle>().GunDamaged();
             Destroy(this.gameObject);
         }

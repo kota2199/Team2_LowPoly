@@ -21,7 +21,8 @@ public class EnemyBattle : MonoBehaviour
 
     private int hp;
 
-    private int damagedHp;
+    [HideInInspector]
+    public int damagedHp;
 
     [SerializeField]
     private GameObject damagedHpText_go;
@@ -35,6 +36,9 @@ public class EnemyBattle : MonoBehaviour
 
     [SerializeField]
     private int punchInterval;
+
+    public int lv;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +56,26 @@ public class EnemyBattle : MonoBehaviour
                 Quaternion.LookRotation(target.transform.position - transform.position), 0.3f);
             transform.localPosition += transform.forward * speed;
         }
-        if (hp < 0)
+        if (hp <= 0)
         {
-
+            GameObject player = GameObject.Find("Player");
+            if (lv == 1)
+            {
+                player.GetComponent<PayerLeveling>().AddExp_Lv1();
+            } else if (lv == 2)
+            {
+                player.GetComponent<PayerLeveling>().AddExp_Lv2();
+            }
+            else if (lv == 3)
+            {
+                player.GetComponent<PayerLeveling>().AddExp_Lv3();
+            }
+            Destroy(this.gameObject);
         }
     }
 
     public void PunchDamaged()
     {
-        damagedHp = 2;
         hp -= damagedHp;
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
@@ -69,7 +84,6 @@ public class EnemyBattle : MonoBehaviour
 
     public void GunDamaged()
     {
-        damagedHp = 5;
         hp -= damagedHp;
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
@@ -130,7 +144,14 @@ public class EnemyBattle : MonoBehaviour
         if (punch_m)
         {
             yield return new WaitForSeconds(punchInterval);
-            GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged();
+            if (lv == 1)
+            {
+                GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged_Lv1();
+            }
+            if (lv >= 2)
+            {
+                GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged_Lv2();
+            }
         }
     }
 }
