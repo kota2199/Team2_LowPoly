@@ -9,6 +9,10 @@ TagManager:
   - PunchArea
   - EnemyPunchArea
   - Ground
+  - Recovery
+  - BombItem
+  - GunItem
+  - ArrowItem
   layers:
   - Default
   - TransparentFX

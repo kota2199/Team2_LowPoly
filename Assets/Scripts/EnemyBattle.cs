@@ -19,6 +19,9 @@ public class EnemyBattle : MonoBehaviour
     [SerializeField]
     private GameObject arrow;
 
+    [SerializeField]
+    private GameObject dropItem;
+
     private int hp;
 
     [HideInInspector]
@@ -29,7 +32,6 @@ public class EnemyBattle : MonoBehaviour
 
     [SerializeField]
     private Text damagedHpText;
-
 
     [SerializeField]
     private int raunchInterval;
@@ -70,6 +72,7 @@ public class EnemyBattle : MonoBehaviour
             {
                 player.GetComponent<PayerLeveling>().AddExp_Lv3();
             }
+            Instantiate(dropItem,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

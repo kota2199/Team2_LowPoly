@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: lv
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 254666810586137935, guid: 25c095b214bf54e909737b4a57c11fd4, type: 3}
+      propertyPath: dropItem
+      value: 
+      objectReference: {fileID: 5834579341101356396, guid: 26aed4a74ab8c424fb6b4a2f1a570381, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25c095b214bf54e909737b4a57c11fd4, type: 3}
 --- !u!1 &240931213
@@ -1404,6 +1408,10 @@ PrefabInstance:
       propertyPath: lv
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8610849698661888403, guid: aea55f7ba31764eea80d928e67e15897, type: 3}
+      propertyPath: dropItem
+      value: 
+      objectReference: {fileID: 5834579341101356396, guid: 26aed4a74ab8c424fb6b4a2f1a570381, type: 3}
     - target: {fileID: 8610849698661888410, guid: aea55f7ba31764eea80d928e67e15897, type: 3}
       propertyPath: m_Name
       value: ArrowEnemy

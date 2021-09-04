@@ -39,6 +39,16 @@ public class BattleSystem : MonoBehaviour
         {
             punch = false;
         }
+        if (other.gameObject.tag == "Recovery")
+        {
+            if (hp >= 9)
+            {
+                hp = 10;
+            }else
+            {
+                hp += 2;
+            }
+        }
     }
 
     public void ArrowDamaged_Lv1()

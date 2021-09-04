@@ -55,4 +55,57 @@ public class PayerLeveling : MonoBehaviour
             myExp = 0;
         }
     }
+    public void AddExp_Lv4()
+    {
+        myExp += 150;
+        if (myExp >= 1500)
+        {
+            myLevel++;
+            myExp = 0;
+        }
+    }
+    public void AddExp_Lv5()
+    {
+        myExp += 150;
+        if (myExp >= 1600)
+        {
+            myLevel++;
+            myExp = 0;
+        }
+    }
+    public void AddExp_Lv6()
+    {
+        myExp += 150;
+        if (myExp >= 1700)
+        {
+            myLevel++;
+            myExp = 0;
+        }
+    }
+    public void AddExp_Lv7()
+    {
+        myExp += 150;
+        if (myExp >= 1800)
+        {
+            myLevel++;
+            myExp = 0;
+        }
+    }
+    public void AddExp_Lv8()
+    {
+        myExp += 150;
+        if (myExp >= 1900)
+        {
+            myLevel++;
+            myExp = 0;
+        }
+    }
+    public void AddExp_Lv9()
+    {
+        myExp += 150;
+        if (myExp >= 2000)
+        {
+            myLevel++;
+        }
+    }
 }
