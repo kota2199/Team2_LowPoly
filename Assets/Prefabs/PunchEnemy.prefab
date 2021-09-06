@@ -357,7 +357,10 @@ MonoBehaviour:
   bodyBrow_m: 0
   speed: 0.1
   arrow: {fileID: 2873430689348911165, guid: 12f5055785b954c57bc7693b085127fc, type: 3}
+  dropItem: {fileID: 5834579341101356396, guid: 26aed4a74ab8c424fb6b4a2f1a570381, type: 3}
+  damagedHp: 0
   damagedHpText_go: {fileID: 254666809568591792}
   damagedHpText: {fileID: 254666809568591806}
   raunchInterval: 0
   punchInterval: 3
+  lv: 1

@@ -12,10 +12,13 @@ public class BattleSystem : MonoBehaviour
 
     private bool punch;
 
+    [SerializeField]
+    private int maxHP;
+
     // Start is called before the first frame update
     void Start()
     {
-        hp = 10;
+        hp = maxHP;
         hpText.text = "HP" + hp.ToString();
     }
 
@@ -41,9 +44,9 @@ public class BattleSystem : MonoBehaviour
         }
         if (other.gameObject.tag == "Recovery")
         {
-            if (hp >= 9)
+            if (hp >= maxHP - 1)
             {
-                hp = 10;
+                hp = maxHP;
             }else
             {
                 hp += 2;

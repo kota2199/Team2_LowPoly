@@ -132,9 +132,13 @@ MonoBehaviour:
   bodyBrow_m: 0
   speed: 0.1
   arrow: {fileID: 2873430689348911165, guid: 12f5055785b954c57bc7693b085127fc, type: 3}
+  dropItem: {fileID: 5834579341101356396, guid: 26aed4a74ab8c424fb6b4a2f1a570381, type: 3}
+  damagedHp: 0
   damagedHpText_go: {fileID: 8610849699180087075}
   damagedHpText: {fileID: 8610849699180087077}
   raunchInterval: 5
+  punchInterval: 0
+  lv: 2
 --- !u!1 &8610849698994337396
 GameObject:
   m_ObjectHideFlags: 0
