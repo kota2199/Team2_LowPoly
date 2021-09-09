@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    float speed = 0.002f;  //透明化の速さ
+    float speed = 0.02f;  //透明化の速さ
     float inalfa;    //A値を操作するための変数
     float outalfa;
     float inred, ingreen, inblue;
@@ -55,6 +55,7 @@ public class FadeInOut : MonoBehaviour
     }
     public void FadeStart()
     {
+        FadeOutPanel.SetActive(true);
         FOFlag = true;
     }
     private IEnumerator FadeIn()

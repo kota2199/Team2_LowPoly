@@ -13,6 +13,7 @@ TagManager:
   - BombItem
   - GunItem
   - ArrowItem
+  - Item
   layers:
   - Default
   - TransparentFX
