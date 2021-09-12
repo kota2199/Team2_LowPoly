@@ -1559,6 +1559,10 @@ PrefabInstance:
       propertyPath: dropItem
       value: 
       objectReference: {fileID: 3069727291003306834, guid: 6e2bd558b03ee41d4b930465d3bad144, type: 3}
+    - target: {fileID: 8610849698661888403, guid: aea55f7ba31764eea80d928e67e15897, type: 3}
+      propertyPath: itemDataBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 844e21bbb08634dd1b829f4c6a1605e4, type: 2}
     - target: {fileID: 8610849698661888410, guid: aea55f7ba31764eea80d928e67e15897, type: 3}
       propertyPath: m_Name
       value: ArrowEnemy
@@ -1715,6 +1719,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928842167}
   m_CullTransparentMesh: 1
+--- !u!1 &1942582470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6237546566652298110, guid: 0e1c90925f74e4de0955ba191b6cd9a5, type: 3}
+  m_PrefabInstance: {fileID: 667335926}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1942582481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942582470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3192d53fb1d1840fa91473c062e26a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataBase: {fileID: 11400000, guid: 844e21bbb08634dd1b829f4c6a1605e4, type: 2}
 --- !u!1001 &2029030663
 PrefabInstance:
   m_ObjectHideFlags: 0

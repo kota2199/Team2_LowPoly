@@ -41,6 +41,12 @@ public class EnemyBattle : MonoBehaviour
 
     public int lv;
 
+    [SerializeField]
+    private int itemNum;    //dropItemの配列の番号
+
+    [SerializeField]
+    private ItemDataBase itemDataBase;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,7 +78,11 @@ public class EnemyBattle : MonoBehaviour
             {
                 player.GetComponent<PayerLeveling>().AddExp_Lv3();
             }
-            Instantiate(dropItem,this.transform.position,Quaternion.identity);
+            if (!itemDataBase.GetItemLists()[itemNum].GetStatus())
+            {
+                Instantiate(dropItem, this.transform.position, Quaternion.identity);
+                //dropItemは配列にしてください
+            }
             Destroy(this.gameObject);
         }
     }

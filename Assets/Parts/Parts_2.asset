@@ -16,3 +16,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   itemName: Parts2
   information: SecondParts
+  status: 0

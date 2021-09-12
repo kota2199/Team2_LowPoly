@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleSystem : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     private int maxHP;
 
+    private bool isDeath = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,16 @@ public class BattleSystem : MonoBehaviour
     void Update()
     {
         hpText.text = "HP" + hp.ToString();
+
+        if(hp <= 0)
+        {
+            if (!isDeath)
+            {
+                GetComponent<SaveSystem>().ResetParts();
+                isDeath = true;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

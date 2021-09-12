@@ -60,4 +60,10 @@ public class Item : ScriptableObject
 		status = true;
 		return status;
 	}
+
+	public bool ReturnStatus(bool savedStatus)
+    {
+		status = savedStatus;
+		return status;
+    }
 }
