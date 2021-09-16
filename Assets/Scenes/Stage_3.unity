@@ -1429,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1108402589723222189, guid: f17e6c50d646d48669b5086a87e3705a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17e6c50d646d48669b5086a87e3705a, type: 3}
@@ -1632,7 +1632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1755772287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,11 +1892,11 @@ PrefabInstance:
       objectReference: {fileID: 1425900883}
     - target: {fileID: 6237546566344216441, guid: 0e1c90925f74e4de0955ba191b6cd9a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.54
+      value: -6.5
       objectReference: {fileID: 0}
     - target: {fileID: 6237546566652298100, guid: 0e1c90925f74e4de0955ba191b6cd9a5, type: 3}
       propertyPath: walkSpeed
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6237546566652298106, guid: 0e1c90925f74e4de0955ba191b6cd9a5, type: 3}
       propertyPath: m_RootOrder

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     float moveSpeed;
-    [SerializeField] float walkSpeed = 10;
+    [SerializeField] float walkSpeed;
     float runSpeed = 0;
     bool isRun;
     Rigidbody playerBody;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             //playerBody.AddForce(transform.forward * 15 * runSpeed);
-            transform.position += transform.forward / 5 * runSpeed;
+            transform.position += transform.forward * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             //playerBody.AddForce(transform.right * -15 * runSpeed);
-            transform.position += -transform.right / 5 * runSpeed;
+            transform.position += -transform.right * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             //playerBody.AddForce(transform.forward * -15 * runSpeed);
-            transform.position += -transform.forward / 5 * runSpeed;
+            transform.position += -transform.forward * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             //playerBody.AddForce(transform.right * 15 * runSpeed);
-            transform.position += transform.right / 5 * runSpeed;
+            transform.position += transform.right * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
         {
