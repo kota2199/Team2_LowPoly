@@ -8,9 +8,15 @@ public class IntroManage : MonoBehaviour
 
     AudioSource audioSource;
 
-    private float speed = 15;
+    private float speed = 10;
 
     private bool col = false;
+
+    [SerializeField]
+    GameObject exp_1, exp_2;
+
+    [SerializeField]
+    AudioClip explo;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +40,15 @@ public class IntroManage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        audioSource.Stop();
         col = true;
-        Debug.Log("ok");
+        exp_1.SetActive(true);
+        audioSource.PlayOneShot(explo);
+        Invoke("NextExp",2);
+    }
+    void NextExp()
+    {
+        exp_2.SetActive(true);
+        audioSource.PlayOneShot(explo);
     }
 }
