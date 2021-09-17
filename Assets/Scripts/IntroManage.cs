@@ -6,25 +6,11 @@ using Cinemachine;
 public class IntroManage : MonoBehaviour
 {
 
-    [SerializeField]
-    AudioClip[] ex_s;
-
-    [SerializeField]
-    AudioClip Jet, caution;
-
-    [SerializeField]
-    ParticleSystem ex1, ex2, smoke, fire;
-
-    [SerializeField]
-    GameObject[] effects;
-
-    [SerializeField]
-    GameObject[] cam;
-
-    [SerializeField]
-    GameObject cautionPanel;
-
     AudioSource audioSource;
+
+    private float speed = 15;
+
+    private bool col = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,67 +21,20 @@ public class IntroManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += transform.forward * 0.5f;
-        if (Input.GetKeyDown(KeyCode.A))
+        this.transform.position += transform.forward * speed;
+        if (speed > 0)
         {
-            CamSwitch();
+            speed -= 0.15f;
         }
-
-    }
-
-    void CamSwitch()
-    {
-        cam[0].SetActive(false);
-        cam[1].SetActive(true);
-        Invoke("explosion", 0.5f);
-    }
-
-    void explosion()
-    {
-        StartCoroutine("Cautioning");
-        StartCoroutine("CautionSound");
-        effects[0].SetActive(true);
-        effects[1].SetActive(true);
-        ex1.Play();
-        ex2.Play();
-        audioSource.PlayOneShot(ex_s[0]);
-        audioSource.PlayOneShot(ex_s[1]);
-        audioSource.PlayOneShot(ex_s[2]);
-        audioSource.PlayOneShot(ex_s[3]);
-        Invoke("StartFire", 1);
-        Invoke("DestroyExpl",2);
-    }
-
-    void StartFire()
-    {
-        effects[2].SetActive(true);
-        effects[3].SetActive(true);
-        smoke.Play();
-        fire.Play();
-    }
-    void DestroyExpl()
-    {
-        effects[0].SetActive(false);
-        effects[1].SetActive(false);
-    }
-
-    private IEnumerator Cautioning()
-    {
-        while (true)
+        if (speed <= 0)
         {
-            cautionPanel.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            cautionPanel.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
+            speed = 0;
         }
     }
 
-    private IEnumerator CautionSound()
+    private void OnCollisionEnter(Collision collision)
     {
-        while (true)
-        {
-            audioSource.PlayOneShot(caution);
-            yield return new WaitForSeconds(4);
-        }
+        col = true;
+        Debug.Log("ok");
     }
 }
