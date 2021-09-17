@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
     bool isRun;
     Rigidbody playerBody;
     Vector3 inputDirection;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody = GetComponent<Rigidbody>();
+
+        animator = GetComponent<Animator>();
 
         Cursor.visible = false;
 
@@ -35,32 +38,38 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerBody.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse);
+            playerBody.AddForce(new Vector3(0, 100, 0), ForceMode.Impulse);
+            animator.SetBool("jump", true);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             isRun = true;
+            animator.SetInteger("run", 1);
         }
-        else
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             isRun = false;
+            animator.SetInteger("run", 0);
         }
 
-        //transform.position += inputDirection * moveSpeed * Time.deltaTime;
         if (Input.GetKey(KeyCode.W))
         {
-            //playerBody.AddForce(transform.forward * 15 * runSpeed);
             transform.position += transform.forward * walkSpeed * runSpeed;
+            animator.SetInteger("walk", 1);
         }
-        else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            animator.SetInteger("walk", 0);
+            animator.SetInteger("run", 0);
+        }
+        /*else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(0, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            //playerBody.AddForce(transform.right * -15 * runSpeed);
             transform.position += -transform.right * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
@@ -70,7 +79,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            //playerBody.AddForce(transform.forward * -15 * runSpeed);
             transform.position += -transform.forward * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
@@ -80,12 +88,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            //playerBody.AddForce(transform.right * 15 * runSpeed);
             transform.position += transform.right * walkSpeed * runSpeed;
         }
         else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
         {
             transform.position += new Vector3(0, 0, 0);
+        }
+        */
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            animator.SetBool("jump",false);
         }
     }
 }
