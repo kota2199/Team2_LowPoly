@@ -8,7 +8,7 @@ public class IntroManage : MonoBehaviour
 
     AudioSource audioSource;
 
-    private float speed = 10;
+    private float speed = 13;
 
     private bool col = false;
 
@@ -50,5 +50,11 @@ public class IntroManage : MonoBehaviour
     {
         exp_2.SetActive(true);
         audioSource.PlayOneShot(explo);
+        Invoke("Fade", 3);
+    }
+
+    void Fade()
+    {
+        GetComponent<FadeInOut>().FadeStart();
     }
 }
