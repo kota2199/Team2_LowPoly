@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 256178701}
   - component: {fileID: 256178700}
   - component: {fileID: 256178703}
+  - component: {fileID: 256178704}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -221,6 +222,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeInPanel: {fileID: 2135977395}
   FadeOutPanel: {fileID: 783491659}
+--- !u!114 &256178704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256178699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0dfc9b679704fa89f8ec3dc964d451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &783491659
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +355,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969243124}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: f1aa3d2f0ae094a549afee5209af2934, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 8286f96779cf0487b8603d711bfb2977, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -538,7 +551,7 @@ Canvas:
   m_GameObject: {fileID: 1898256496}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
