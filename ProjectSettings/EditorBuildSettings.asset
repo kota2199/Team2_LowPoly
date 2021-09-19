@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 7fde022cd08064b97ac8ed9dca30aeda
   - enabled: 1
-    path: Assets/Scenes/Introduction.unity
-    guid: 96e24d0d6d9504171915ea37b05da748
+    path: Assets/Scenes/Intro1.unity
+    guid: 2019f6ce0349544b09c531b319a1fbed
   - enabled: 1
-    path: Assets/Scenes/Introduction2.unity
-    guid: 10a46d309cf304a9fbd137ea59267cff
+    path: Assets/Scenes/Intro2.unity
+    guid: 060930bf8e19e4693bd824e2f45aa375
+  - enabled: 1
+    path: Assets/Scenes/Intro3.unity
+    guid: 24c20b34a3b8c467dbee141b7871a5fb
   - enabled: 1
     path: Assets/Scenes/Stage_1.unity
     guid: 17ba360c4341d47d5a16a2ec7610b6e2

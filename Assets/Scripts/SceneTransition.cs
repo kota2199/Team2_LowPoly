@@ -7,12 +7,15 @@ public class SceneTransition : MonoBehaviour
 {
 
     [SerializeField]
-    private string sceneName;
+    int waitTime;
+
+    [SerializeField]
+    string sceneName;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("ToNextScene");
     }
 
     // Update is called once per frame
@@ -21,13 +24,11 @@ public class SceneTransition : MonoBehaviour
         
     }
 
-    public void WaitTransition()
+    private IEnumerator ToNextScene()
     {
-        Invoke("Transition", 2);
-    }
-
-    void Transition()
-    {
+        yield return new WaitForSeconds(waitTime);
+        GetComponent<FadeInOut>().FadeStart();
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(sceneName);
     }
 }
