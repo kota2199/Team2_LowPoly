@@ -27,7 +27,7 @@ public class SceneTransition : MonoBehaviour
     private IEnumerator ToNextScene()
     {
         yield return new WaitForSeconds(waitTime);
-        GetComponent<FadeInOut>().FadeStart();
+        //GetComponent<FadeInOut>().FadeStart();
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(sceneName);
     }
