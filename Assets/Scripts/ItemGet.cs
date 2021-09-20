@@ -12,22 +12,23 @@ public class ItemGet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Item")
         {
             int id = other.GetComponent<ItemIdentify>().myID;
             itemDataBase.GetItemLists()[id].SetStatus();
-            other.GetComponent<ItemIdentify>().deleteThis();
+            
+            //other.GetComponent<ItemIdentify>().deleteThis();
         }
-    }
+    }*/
 }
