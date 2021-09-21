@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e842dc3a3c047cb91d8c744a0e2bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.02
   FadeInPanel: {fileID: 339536193}
   FadeOutPanel: {fileID: 1936850304}
 --- !u!114 &683977742

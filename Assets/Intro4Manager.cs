@@ -20,7 +20,7 @@ public class Intro4Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource.GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

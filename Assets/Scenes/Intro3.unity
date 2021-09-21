@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e842dc3a3c047cb91d8c744a0e2bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.02
   FadeInPanel: {fileID: 787800984}
   FadeOutPanel: {fileID: 1200375645}
 --- !u!114 &109189253
@@ -309,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9aac8168ec63456abf7c56b3e974262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 8
+  waitTime: 5
   sceneName: Intro4
 --- !u!114 &109189254
 MonoBehaviour:
@@ -434,7 +435,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

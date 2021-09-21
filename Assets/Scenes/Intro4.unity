@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121696048}
   m_LocalRotation: {x: -0, y: -0.9535634, z: 0.000000003725289, w: 0.30119255}
-  m_LocalPosition: {x: 4.1899977, y: 0.48000088, z: 6.57001}
+  m_LocalPosition: {x: 4.189995, y: 0.48000082, z: 6.5700083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 425317014}
@@ -620,19 +620,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7928825565740896065, guid: 0532cd3e321d14b51a8e83237ec7e62f, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7928825565740896071, guid: 0532cd3e321d14b51a8e83237ec7e62f, type: 3}
       propertyPath: m_Name
       value: FadeOutPanel
       objectReference: {fileID: 0}
     - target: {fileID: 7928825565740896071, guid: 0532cd3e321d14b51a8e83237ec7e62f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0532cd3e321d14b51a8e83237ec7e62f, type: 3}
 --- !u!224 &591476086 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7928825565740896064, guid: 0532cd3e321d14b51a8e83237ec7e62f, type: 3}
+  m_PrefabInstance: {fileID: 591476085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &617747105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7928825565740896071, guid: 0532cd3e321d14b51a8e83237ec7e62f, type: 3}
   m_PrefabInstance: {fileID: 591476085}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &665712333
@@ -1043,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7339508910614505965, guid: 025193dbc42f64d47b1022fc5d05691f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7339508910614505966, guid: 025193dbc42f64d47b1022fc5d05691f, type: 3}
       propertyPath: m_Pivot.x
@@ -1143,13 +1152,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7339508910614505967, guid: 025193dbc42f64d47b1022fc5d05691f, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 025193dbc42f64d47b1022fc5d05691f, type: 3}
 --- !u!224 &1023370539 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7339508910614505966, guid: 025193dbc42f64d47b1022fc5d05691f, type: 3}
+  m_PrefabInstance: {fileID: 1023370538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1197702701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7339508910614505965, guid: 025193dbc42f64d47b1022fc5d05691f, type: 3}
   m_PrefabInstance: {fileID: 1023370538}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1622342341
@@ -1356,11 +1370,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 486654, guid: b271505711828fd4e9719f1b97a0922a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 91
+      value: 97.6
       objectReference: {fileID: 0}
     - target: {fileID: 486654, guid: b271505711828fd4e9719f1b97a0922a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -45
+      value: -108.3
       objectReference: {fileID: 0}
     - target: {fileID: 486654, guid: b271505711828fd4e9719f1b97a0922a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1512,6 +1526,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 15
   sceneName: Stage_1
+--- !u!114 &1668631771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668631767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e842dc3a3c047cb91d8c744a0e2bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.02
+  FadeInPanel: {fileID: 1197702701}
+  FadeOutPanel: {fileID: 617747105}
 --- !u!54 &1668631772
 Rigidbody:
   m_ObjectHideFlags: 0

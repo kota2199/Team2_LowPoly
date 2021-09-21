@@ -41,7 +41,7 @@ public class Intro2Manager : MonoBehaviour
         cam2.SetActive(true);
         aS.PlayOneShot(exp1);
         expl1.Play();
-        aS.PlayOneShot(caution);
+        //aS.PlayOneShot(caution);
         yield return new WaitForSeconds(0.2f);
         aS.PlayOneShot(exp2);
         expl2.Play();
