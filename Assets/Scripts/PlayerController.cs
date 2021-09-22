@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerBody.AddForce(new Vector3(0, 100, 0), ForceMode.Impulse);
+            playerBody.AddForce(new Vector3(0, 80, 0), ForceMode.Impulse);
             animator.SetBool("jump", true);
         }
 

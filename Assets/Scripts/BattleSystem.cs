@@ -9,6 +9,8 @@ public class BattleSystem : MonoBehaviour
 
     public Text hpText;
 
+    public Slider hpSlider;
+
     private int hp;
 
     private bool punch;
@@ -22,13 +24,17 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         hp = maxHP;
-        hpText.text = "HP" + hp.ToString();
+        hpText.text = "HP:" + hp.ToString() + "/" + maxHP.ToString();
+        hpSlider.maxValue = maxHP;
+        hpSlider.value = hp;
     }
 
     // Update is called once per frame
     void Update()
     {
         hpText.text = "HP" + hp.ToString();
+        hpSlider.value = hp;
+        hpSlider.maxValue = maxHP;
 
         if(hp <= 0)
         {
@@ -47,6 +53,7 @@ public class BattleSystem : MonoBehaviour
         {
             punch = true;
         }
+        //敵のパンチ有効範囲に入ったらパンチを受けるBoolをTrueにする
     }
 
     private void OnTriggerExit(Collider other)
@@ -63,6 +70,7 @@ public class BattleSystem : MonoBehaviour
             }else
             {
                 hp += 2;
+                SaveHP();
             }
         }
     }
@@ -70,6 +78,7 @@ public class BattleSystem : MonoBehaviour
     public void ArrowDamaged_Lv1()
     {
         hp -= 5;
+        SaveHP();
     }
 
     public void PunchDamaged_Lv1()
@@ -77,11 +86,13 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 3;
+            SaveHP();
         }
     }
     public void ArrowDamaged_Lv2()
     {
         hp -= 6;
+        SaveHP();
     }
 
     public void PunchDamaged_Lv2()
@@ -89,6 +100,29 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 4;
+            SaveHP();
         }
+    }
+
+    public void PunchDamaged_Lv3()
+    {
+        if (punch)
+        {
+            hp -= 6;
+            SaveHP();
+        }
+    }
+    public void ArrowDamaged_Lv3()
+    {
+        hp -= 10;
+        SaveHP();
+    }
+
+    //敵側のEnemyBattle.cs内で指定したインターバルごとに関数が呼び出されてダメージを受ける
+
+    void SaveHP()
+    {
+        GameObject.Find("DetaSaver").GetComponent<DateHold>().hp = hp;
+        GameObject.Find("DetaSaver").GetComponent<DateHold>().HPSave();
     }
 }
