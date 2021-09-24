@@ -19,6 +19,11 @@ public class PlayerAttack : MonoBehaviour
 
     Animator animator;
 
+    AudioSource audioSource;
+
+    [SerializeField]
+    AudioClip punch_s, gun_s, bomb_s;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,7 @@ public class PlayerAttack : MonoBehaviour
         targetOn = false;
         gunInterval = true;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,10 +43,14 @@ public class PlayerAttack : MonoBehaviour
         {
             if (punch_m)
             {
+                Invoke("PunchSound",0.5f);
+                StartCoroutine("PunchInterval");
                 animator.SetTrigger("punch");
+                punch_m = false;
                 if (targetOn)
                 {
                     Debug.Log("ok");
+                    audioSource.PlayOneShot(punch_s);
                     PunchAtttack();
                 }
             }
@@ -53,7 +63,8 @@ public class PlayerAttack : MonoBehaviour
             }
             if (bomb_m)
             {
-
+                audioSource.PlayOneShot(bomb_s);
+                GetComponent<WeaponGet>().bombs--;
             }
         }
 
@@ -155,5 +166,16 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         gunInterval = true;
+    }
+
+    private IEnumerator PunchInterval()
+    {
+        yield return new WaitForSeconds(3);
+        punch_m = true;
+    }
+
+    void PunchSound()
+    {
+        audioSource.PlayOneShot(punch_s);
     }
 }

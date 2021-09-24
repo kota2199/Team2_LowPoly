@@ -9,13 +9,13 @@ public class WeaponGet : MonoBehaviour
 
     public bool bomb, weapon2, weapon3;
 
-    [SerializeField]
     GameObject dateSaver;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        dateSaver = GameObject.Find("DetaSaver");
+        bombs = dateSaver.GetComponent<DateHold>().bombs_s;
     }
 
     // Update is called once per frame
