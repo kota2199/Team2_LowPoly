@@ -20,6 +20,13 @@ public class BattleSystem : MonoBehaviour
 
     private bool isDeath = false;
 
+    AudioSource audioSource;
+
+    [SerializeField]
+    AudioClip damaged;
+
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +34,8 @@ public class BattleSystem : MonoBehaviour
         hpText.text = "HP:" + hp.ToString() + "/" + maxHP.ToString();
         hpSlider.maxValue = maxHP;
         hpSlider.value = hp;
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,9 +49,11 @@ public class BattleSystem : MonoBehaviour
         {
             if (!isDeath)
             {
+
                 GetComponent<SaveSystem>().ResetParts();
+                animator.SetBool("Die", true);
+                Invoke("daeth", 3);
                 isDeath = true;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
@@ -72,12 +83,15 @@ public class BattleSystem : MonoBehaviour
                 hp += 2;
                 SaveHP();
             }
+            Destroy(other.gameObject);
         }
     }
 
     public void ArrowDamaged_Lv1()
     {
         hp -= 5;
+        audioSource.PlayOneShot(damaged);
+        animator.SetTrigger("damage");
         SaveHP();
     }
 
@@ -86,12 +100,16 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 3;
+            audioSource.PlayOneShot(damaged);
+            animator.SetTrigger("damage");
             SaveHP();
         }
     }
     public void ArrowDamaged_Lv2()
     {
         hp -= 6;
+        audioSource.PlayOneShot(damaged);
+        animator.SetTrigger("damage");
         SaveHP();
     }
 
@@ -100,6 +118,8 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 4;
+            audioSource.PlayOneShot(damaged);
+            animator.SetTrigger("damage");
             SaveHP();
         }
     }
@@ -109,12 +129,16 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 6;
+            audioSource.PlayOneShot(damaged);
+            animator.SetTrigger("damage");
             SaveHP();
         }
     }
     public void ArrowDamaged_Lv3()
     {
         hp -= 10;
+        audioSource.PlayOneShot(damaged);
+        animator.SetTrigger("damage");
         SaveHP();
     }
 
@@ -124,5 +148,10 @@ public class BattleSystem : MonoBehaviour
     {
         GameObject.Find("DetaSaver").GetComponent<DateHold>().hp = hp;
         GameObject.Find("DetaSaver").GetComponent<DateHold>().HPSave();
+    }
+
+    void death()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

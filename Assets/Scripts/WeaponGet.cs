@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponGet : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class WeaponGet : MonoBehaviour
     public bool bomb, weapon2, weapon3;
 
     GameObject dateSaver;
+
+    [SerializeField]
+    GameObject messengers;
+
+    [SerializeField]
+    Text messageText;
 
     // Start is called before the first frame update
     void Start()
@@ -44,20 +51,47 @@ public class WeaponGet : MonoBehaviour
         if (other.gameObject.tag == "ArrowItem")
         {
             weapon2 = true;
-            dateSaver.GetComponent<DateHold>().weapon2_s = 1;
-            dateSaver.GetComponent<DateHold>().AbleWea2();
+            messengers.SetActive(true);
+            messageText.text = "弓矢を獲得しました！";
+            Invoke("MessageFalse",3);
+            Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "GunItem")
         {
             weapon3 = true;
-            dateSaver.GetComponent<DateHold>().weapon3_s = 1;
-            dateSaver.GetComponent<DateHold>().AbleWea3();
+            messengers.SetActive(true);
+            messageText.text = "銃を獲得しました！";
+            Invoke("MessageFalse", 3);
+            Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "BombItem")
         {
             bombs++;
-            dateSaver.GetComponent<DateHold>().bombs_s = bombs;
-            dateSaver.GetComponent<DateHold>().SaveBombs();
+            messengers.SetActive(true);
+            messageText.text = "手榴弾を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
+    }
+    void MessageFalse()
+    {
+        messengers.SetActive(false);
+        messageText.text = ("");
+    }
+
+    public void WeaponSave()
+    {
+        if (weapon2)
+        {
+            dateSaver.GetComponent<DateHold>().weapon2_s = 1;
+            dateSaver.GetComponent<DateHold>().AbleWea2();
+        }
+        if (weapon3)
+        {
+            dateSaver.GetComponent<DateHold>().weapon3_s = 1;
+            dateSaver.GetComponent<DateHold>().AbleWea3();
+        }
+
+        dateSaver.GetComponent<DateHold>().bombs_s = bombs;
+        dateSaver.GetComponent<DateHold>().SaveBombs();
     }
 }

@@ -32,6 +32,7 @@ public class ItemIdentify : MonoBehaviour
             //int id = other.GetComponent<ItemIdentify>().myID;
             itemDataBase.GetItemLists()[myID].SetStatus();
             Destroy(this.gameObject);
+            other.gameObject.GetComponent<ItemGet>().GetText(myID);
         }
     }
 }

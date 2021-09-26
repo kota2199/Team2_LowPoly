@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     bool canJump = true;
 
+    [SerializeField]
+    ParticleSystem footsmoke;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -171,6 +174,20 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(0, 0, 0);
         }
         */
+        if (playerBody.velocity.magnitude > 0.1f)
+        {
+            if (!footsmoke.isEmitting)
+            {
+                footsmoke.Play();
+            }
+        }
+        else
+        {
+            if (footsmoke.isEmitting)
+            {
+                footsmoke.Stop();
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

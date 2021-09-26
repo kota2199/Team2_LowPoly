@@ -18,13 +18,14 @@ public class SaveSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        /*if (Input.GetKeyDown(KeyCode.P))
         {
             for(int i = 0; i < 3; i++)
             {
                 savedParts[i] = itemDataBase.GetItemLists()[i].GetStatus();
             }
         }
+        */
     }
 
     public void ResetParts()

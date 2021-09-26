@@ -38,7 +38,6 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(targetOn);
         if (Input.GetMouseButtonDown(0))
         {
             if (punch_m)
@@ -49,7 +48,6 @@ public class PlayerAttack : MonoBehaviour
                 punch_m = false;
                 if (targetOn)
                 {
-                    Debug.Log("ok");
                     audioSource.PlayOneShot(punch_s);
                     PunchAtttack();
                 }
@@ -96,23 +94,21 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("puncharea");
             targetObj = other.gameObject;
             targetOn = true;
         }
-        */
     }
 
     private void OnTriggerExit(Collider other)
     {
-        /*if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             targetObj = null;
             targetOn = false;
         }
-        */
     }
 
     void PunchAtttack()

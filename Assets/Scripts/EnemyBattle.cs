@@ -50,6 +50,9 @@ public class EnemyBattle : MonoBehaviour
     [SerializeField]
     int maxHP;
 
+    [SerializeField]
+    bool isItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -200,10 +203,22 @@ public class EnemyBattle : MonoBehaviour
                     player.GetComponent<PayerLeveling>().AddExp_Lv9(givingExp);
                 }
             }
-            if (!itemDataBase.GetItemLists()[itemNum].GetStatus())
+            if (isItem)
+            {
+                if (!itemDataBase.GetItemLists()[itemNum].GetStatus())
+                {
+                    Instantiate(dropItem, this.transform.position, Quaternion.identity);
+                }
+            } else if (!isItem)
             {
                 Instantiate(dropItem, this.transform.position, Quaternion.identity);
             }
+
+            if (GameObject.Find("DetaSaver").GetComponent<DateHold>().boots <= 0)
+            {
+                GetComponent<ReturnTutorial>().ToTutorial();
+            }
+
             Destroy(this.gameObject);
 
             //もしHPが0を下回った際、レベルに応じて得られるExpを変えて付与

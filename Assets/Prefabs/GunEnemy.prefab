@@ -137,7 +137,7 @@ MonoBehaviour:
   damagedHp: 0
   damagedHpText_go: {fileID: 3530195593072125356}
   damagedHpText: {fileID: 3530195593072125354}
-  raunchInterval: 0
+  raunchInterval: 5
   punchInterval: 3
   lv: 1
   itemNum: 1
