@@ -14,6 +14,12 @@ public class WarpFinalScript : MonoBehaviour
     private float countTime = 0;
     private bool startCount;
 
+    [SerializeField]
+    GameObject messengers;
+
+    [SerializeField]
+    Text messageText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +46,22 @@ public class WarpFinalScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+        if (other.gameObject.name == "ToStage2" && other.gameObject.name == "ToStage3" && other.gameObject.name == "BackToStage1")
+        {
+            messengers.SetActive(true);
+            messageText.text = "エリアを移動";
+        }
+        if (other.gameObject.name == "ToBossBattle")
+        {
+            messengers.SetActive(true);
+            messageText.text = "ボス戦に挑む";
+        }
             if (Input.GetMouseButtonDown(0))
             {
+            if(other.gameObject.name == "ToStage1")
+            {
+                StartCoroutine("ChangeStage1");
+            }
                 if (other.gameObject.name == "ToStage2")
                 {
                     //アイテムが揃ってる場合
@@ -97,6 +116,16 @@ public class WarpFinalScript : MonoBehaviour
         SceneManager.LoadScene("");
 
     }
+
+    IEnumerator ChangeStage1()
+    {
+        GetComponent<FadeInOut>().FadeStart();
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("Stage_1");
+    }
+
     IEnumerator ChangeStage2()
     {
         GetComponent<FadeInOut>().FadeStart();

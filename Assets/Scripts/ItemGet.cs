@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemGet : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class ItemGet : MonoBehaviour
     [SerializeField]
     private ItemDataBase itemDataBase;
 
+    [SerializeField]
+    GameObject messengers;
+
+    [SerializeField]
+    Text messageText;
+
+    string sort;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,4 +39,55 @@ public class ItemGet : MonoBehaviour
             //other.GetComponent<ItemIdentify>().deleteThis();
         }
     }*/
+
+    public void GetText(int ID)
+    {
+        if (ID == 0)
+        {
+            sort = "バッテリー";
+        } else if (ID == 1)
+        {
+
+        } else if (ID == 2)
+        {
+            sort = "";
+        }
+        else if (ID == 3)
+        {
+            sort = "";
+        }
+        else if (ID == 4)
+        {
+            sort = "";
+        }
+        else if (ID == 5)
+        {
+            sort = "";
+        }
+        else if (ID == 6)
+        {
+            sort = "";
+        }
+        else if (ID == 7)
+        {
+            sort = "";
+        }
+        else if (ID == 8)
+        {
+            sort = "";
+        }
+        else if (ID == 9)
+        {
+            sort = "";
+        }
+        messengers.SetActive(true);
+        messageText.text = sort + "を獲得しました！";
+        Invoke("MessageFalse", 3);
+    }
+
+    void MessageFalse()
+    {
+        messengers.SetActive(false);
+        messageText.text = ("");
+    }
 }

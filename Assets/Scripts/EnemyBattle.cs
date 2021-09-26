@@ -47,12 +47,19 @@ public class EnemyBattle : MonoBehaviour
     [SerializeField]
     private ItemDataBase itemDataBase;
 
+    [SerializeField]
+    int maxHP;
+
+    [SerializeField]
+    bool isItem;
+
     // Start is called before the first frame update
     void Start()
     {
         fightning = false;
-        hp = 10;
+        hp = maxHP;
         damagedHp = 0;
+        //初期化
     }
 
     // Update is called once per frame
@@ -64,26 +71,157 @@ public class EnemyBattle : MonoBehaviour
                 Quaternion.LookRotation(target.transform.position - transform.position), 0.3f);
             transform.localPosition += transform.forward * speed;
         }
+
+        //Bool値がTrueなら回転と前進でプレイヤーを追尾
+
         if (hp <= 0)
         {
             GameObject player = GameObject.Find("Player");
+
             if (lv == 1)
             {
-                player.GetComponent<PayerLeveling>().AddExp_Lv1();
+                int givingExp = 50;
+
+                if (player.GetComponent<PayerLeveling>().myLevel == 1)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv1(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 2)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv2(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 3)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv3(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 4)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv4(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 5)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv5(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 6)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv6(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 7)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv7(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 8)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv8(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 9)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv9(givingExp);
+                }
+
             } else if (lv == 2)
             {
-                player.GetComponent<PayerLeveling>().AddExp_Lv2();
+                int givingExp = 100;
+
+                if (player.GetComponent<PayerLeveling>().myLevel == 1)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv1(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 2)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv2(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 3)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv3(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 4)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv4(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 5)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv5(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 6)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv6(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 7)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv7(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 8)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv8(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 9)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv9(givingExp);
+                }
             }
+
             else if (lv == 3)
             {
-                player.GetComponent<PayerLeveling>().AddExp_Lv3();
+
+                int givingExp = 150;
+
+                if (player.GetComponent<PayerLeveling>().myLevel == 1)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv1(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 2)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv2(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 3)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv3(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 4)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv4(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 5)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv5(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 6)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv6(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 7)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv7(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 8)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv8(givingExp);
+                }
+                if (player.GetComponent<PayerLeveling>().myLevel == 9)
+                {
+                    player.GetComponent<PayerLeveling>().AddExp_Lv9(givingExp);
+                }
             }
-            if (!itemDataBase.GetItemLists()[itemNum].GetStatus())
+            if (isItem)
+            {
+                if (!itemDataBase.GetItemLists()[itemNum].GetStatus())
+                {
+                    Instantiate(dropItem, this.transform.position, Quaternion.identity);
+                }
+            } else if (!isItem)
             {
                 Instantiate(dropItem, this.transform.position, Quaternion.identity);
-                //dropItemは配列にしてください
             }
+
+            if (GameObject.Find("DetaSaver").GetComponent<DateHold>().boots <= 0)
+            {
+                GetComponent<ReturnTutorial>().ToTutorial();
+            }
+
             Destroy(this.gameObject);
+
+            //もしHPが0を下回った際、レベルに応じて得られるExpを変えて付与
         }
     }
 
@@ -93,6 +231,8 @@ public class EnemyBattle : MonoBehaviour
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
         Invoke("DamagedHPFalse",2);
+
+        //この敵がパンチを受けたら、HPから減算し、受けたダメージをTextに表示。2秒後に消す関数を実行
     }
 
     public void GunDamaged()
@@ -101,12 +241,16 @@ public class EnemyBattle : MonoBehaviour
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
         Invoke("DamagedHPFalse", 2);
+
+        //この敵が銃によるダメージを受けたら、HPから減算し、受けたダメージをTextに表示。2秒後に消す関数を実行
     }
 
     void DamagedHPFalse()
     {
         damagedHpText_go.SetActive(false);
         damagedHp = 0;
+
+        //受けたダメージのTextを消す
     }
 
     private void OnTriggerEnter(Collider other)
@@ -116,10 +260,14 @@ public class EnemyBattle : MonoBehaviour
             fightning = true;
             target = other.gameObject;
             StartCoroutine("Attack");
+
+            //プレイヤーの子であるColliderに接触すると戦闘が始まる。
         }
         if (other.gameObject.tag == "PunchArea")
         {
             StartCoroutine("PunchStart");
+
+            //プレイヤーの子であるColliderに接触するとパンチが始まる。
         }
     }
 
@@ -135,6 +283,8 @@ public class EnemyBattle : MonoBehaviour
         {
             StopCoroutine("PunchStart");
         }
+
+        //プレイヤーの子であるColliderから離脱すると戦闘モード終了
     }
 
     private IEnumerator Attack()
@@ -149,6 +299,8 @@ public class EnemyBattle : MonoBehaviour
                 arrow_g.GetComponent<BulletSystem>().mother = this.gameObject;
             }
         }
+
+        //もしarrowがTrueなら、指定したインターバルごとに球を発射
     }
 
     private IEnumerator PunchStart()
@@ -161,10 +313,16 @@ public class EnemyBattle : MonoBehaviour
             {
                 GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged_Lv1();
             }
-            if (lv >= 2)
+            if (lv == 2)
             {
                 GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged_Lv2();
             }
+            if (lv == 3)
+            {
+                GameObject.Find("Player").GetComponent<BattleSystem>().PunchDamaged_Lv1();
+            }
         }
+        //punch_mがTrueなら、指定したインターバルごとにパンチ関数を実行する。敵のレベルごとに与えるダメージを変える
+
     }
 }

@@ -6,22 +6,33 @@ public class PlayerAttack : MonoBehaviour
 {
 
     [SerializeField]
-    private bool punch_m, gun_m;
+    private bool punch_m, gun_m, bomb_m;
 
-    private bool targetOn;
+    public bool targetOn;
 
-    private GameObject targetObj;
+    public GameObject targetObj;
 
     [SerializeField]
     private GameObject bullet;
 
     private bool gunInterval;
 
+    Animator animator;
+
+    AudioSource audioSource;
+
+    [SerializeField]
+    AudioClip punch_s, gun_s, bomb_s;
+
     // Start is called before the first frame update
     void Start()
     {
+        punch_m = true;
+        gun_m = false;
         targetOn = false;
         gunInterval = true;
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,8 +42,13 @@ public class PlayerAttack : MonoBehaviour
         {
             if (punch_m)
             {
+                Invoke("PunchSound",0.5f);
+                StartCoroutine("PunchInterval");
+                animator.SetTrigger("punch");
+                punch_m = false;
                 if (targetOn)
                 {
+                    audioSource.PlayOneShot(punch_s);
                     PunchAtttack();
                 }
             }
@@ -43,17 +59,36 @@ public class PlayerAttack : MonoBehaviour
                 gunInterval = false;
                 StartCoroutine("Interval");
             }
+            if (bomb_m)
+            {
+                audioSource.PlayOneShot(bomb_s);
+                GetComponent<WeaponGet>().bombs--;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             punch_m = true;
             gun_m = false;
+            bomb_m = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            punch_m = false;
-            gun_m = true;
+            if (GetComponent<WeaponGet>().weapon2)
+            {
+                punch_m = false;
+                gun_m = true;
+                bomb_m = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if(GetComponent<WeaponGet>().bombs > 0)
+            {
+                punch_m = false;
+                gun_m = false;
+                bomb_m = true;
+            }
         }
     }
 
@@ -61,6 +96,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("puncharea");
             targetObj = other.gameObject;
             targetOn = true;
         }
@@ -81,16 +117,61 @@ public class PlayerAttack : MonoBehaviour
         {
             targetObj.GetComponent<EnemyBattle>().damagedHp = 2;
         }
-        if (GetComponent<PayerLeveling>().myLevel >= 2)
+        if (GetComponent<PayerLeveling>().myLevel == 2)
         {
             targetObj.GetComponent<EnemyBattle>().damagedHp = 3;
         }
+        if (GetComponent<PayerLeveling>().myLevel == 3)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 4;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 4)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 6;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 5)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 8;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 6)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 11;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 7)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 14;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 8)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 18;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 9)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 22;
+        }
+        if (GetComponent<PayerLeveling>().myLevel == 10)
+        {
+            targetObj.GetComponent<EnemyBattle>().damagedHp = 27;
+        }
         targetObj.GetComponent<EnemyBattle>().PunchDamaged();
+
+        //プレイヤーのレベルに応じて与えるダメージを変えて付与
     }
 
     private IEnumerator Interval()
     {
         yield return new WaitForSeconds(3);
         gunInterval = true;
+    }
+
+    private IEnumerator PunchInterval()
+    {
+        yield return new WaitForSeconds(3);
+        punch_m = true;
+    }
+
+    void PunchSound()
+    {
+        audioSource.PlayOneShot(punch_s);
     }
 }
