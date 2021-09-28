@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 608880937423645904}
   - component: {fileID: 608880937423645905}
   - component: {fileID: 608880937423645906}
+  - component: {fileID: 3455601457076018229}
   m_Layer: 0
   m_Name: BombItem
   m_TagString: BombItem
@@ -95,3 +96,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3455601457076018229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608880937423645907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce2cf35e2f7d4e62abfc94391250d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponId: 4

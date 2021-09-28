@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     bool canJump = true;
 
+    public bool stopWalk = false;
+
     [SerializeField]
     ParticleSystem footsmoke;
 
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             runSpeed = 1;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             playerBody.AddForce(new Vector3(0, 80, 0), ForceMode.Impulse);
             audioSource.PlayOneShot(jumping);
@@ -58,12 +60,12 @@ public class PlayerController : MonoBehaviour
             canJump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             isRun = true;
             animator.SetInteger("run", 1);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             walksound = false;
             StopWalkingSound();
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
                 running_s_length = running.length;
             }
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             runsound = false;
             walksound = true;
@@ -88,12 +90,12 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("run", 0);
         }
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             transform.position += transform.forward * walkSpeed * runSpeed;
         }
 
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             transform.position += transform.forward * walkSpeed * runSpeed;
             animator.SetInteger("walk", 1);
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
                 walk_s_length = walking.length;
             }
         }
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             StopWalkingSound();
             animator.SetInteger("walk", 0);
@@ -118,7 +120,7 @@ public class PlayerController : MonoBehaviour
             audioSource.Stop();
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && !GetComponent<BattleSystem>().isDeath)
         {
             transform.position -= transform.forward * walkSpeed * runSpeed;
             animator.SetInteger("walk", 1);
@@ -135,7 +137,7 @@ public class PlayerController : MonoBehaviour
                 walk_s_length = walking.length;
             }
         }
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
             StopWalkingSound();
             animator.SetInteger("walk", 0);

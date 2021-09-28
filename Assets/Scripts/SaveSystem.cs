@@ -9,6 +9,9 @@ public class SaveSystem : MonoBehaviour
 
     bool[] savedParts = new bool[10];
 
+    [SerializeField]
+    GameObject completeSaveText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +45,17 @@ public class SaveSystem : MonoBehaviour
         {
             savedParts[i] = itemDataBase.GetItemLists()[i].GetStatus();
         }
+
+        GetComponent<WeaponGet>().WeaponSave();
+
+        GetComponent<PayerLeveling>().SaveExpLv();
+
+        completeSaveText.SetActive(true);
+        Invoke("TextFalse", 2);
+    }
+
+    void TextFalse()
+    {
+        completeSaveText.SetActive(false);
     }
 }

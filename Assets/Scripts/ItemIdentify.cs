@@ -33,6 +33,12 @@ public class ItemIdentify : MonoBehaviour
             itemDataBase.GetItemLists()[myID].SetStatus();
             Destroy(this.gameObject);
             other.gameObject.GetComponent<ItemGet>().GetText(myID);
+            other.gameObject.GetComponent<PlayerController>().stopWalk = true;
         }
+    }
+
+    private IEnumerator StartWalk()
+    {
+        yield return new WaitForSeconds(4);
     }
 }

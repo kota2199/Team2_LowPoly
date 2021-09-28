@@ -29,9 +29,13 @@ public class BulletSystem : MonoBehaviour
                 other.GetComponent<BattleSystem>().ArrowDamaged_Lv1();
             }
 
-            if (mother.GetComponent<EnemyBattle>().lv <= 2)
+            if (mother.GetComponent<EnemyBattle>().lv == 2)
             {
                 other.GetComponent<BattleSystem>().ArrowDamaged_Lv2();
+            }
+            if (mother.GetComponent<EnemyBattle>().lv == 3)
+            {
+                other.GetComponent<BattleSystem>().ArrowDamaged_Lv3();
             }
             Destroy(this.gameObject);
         }

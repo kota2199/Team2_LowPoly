@@ -8,33 +8,44 @@ public class MenuManage : MonoBehaviour
     [SerializeField]
     GameObject menu;
 
-    bool ismenu = false;
+    public bool ismenu = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !ismenu)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ismenu = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && ismenu)
-        {
-            ismenu = false;
-        }
+            if (ismenu)
+            {
+                ismenu = false;
+            }
+            else
+            {
+                ismenu = true;
+            }
 
-        if (ismenu)
-        {
-            menu.SetActive(true);
-        }
-        else
-        {
-            menu.SetActive(false);
+            if (ismenu)
+            {
+                menu.SetActive(true);
+
+                Cursor.visible = true;
+
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                menu.SetActive(false);
+
+                Cursor.visible = false;
+
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
 }

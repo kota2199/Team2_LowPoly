@@ -18,23 +18,67 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     private int maxHP;
 
-    private bool isDeath = false;
-
-    AudioSource audioSource;
+    public bool isDeath = false;
 
     [SerializeField]
-    AudioClip damaged;
+    AudioSource audioSource_battle;
+
+    [SerializeField]
+    AudioClip damaged, die;
 
     Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("lv") == 0)
+        {
+            maxHP = 10;
+        }
+        if (PlayerPrefs.GetInt("lv") == 1)
+        {
+            maxHP = 13;
+        }
+        if (PlayerPrefs.GetInt("lv") == 2)
+        {
+            maxHP = 16;
+        }
+        if (PlayerPrefs.GetInt("lv") == 3)
+        {
+            maxHP = 19;
+        }
+        if (PlayerPrefs.GetInt("lv") == 4)
+        {
+            maxHP = 23;
+        }
+        if (PlayerPrefs.GetInt("lv") == 5)
+        {
+            maxHP = 27;
+        }
+        if (PlayerPrefs.GetInt("lv") == 6)
+        {
+            maxHP = 32;
+        }
+        if (PlayerPrefs.GetInt("lv") == 7)
+        {
+            maxHP = 36;
+        }
+        if (PlayerPrefs.GetInt("lv") == 8)
+        {
+            maxHP = 40;
+        }
+        if (PlayerPrefs.GetInt("lv") == 9)
+        {
+            maxHP = 45;
+        }
+        if (PlayerPrefs.GetInt("lv") == 10)
+        {
+            maxHP = 50;
+        }
         hp = maxHP;
         hpText.text = "HP:" + hp.ToString() + "/" + maxHP.ToString();
         hpSlider.maxValue = maxHP;
         hpSlider.value = hp;
-        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -47,12 +91,14 @@ public class BattleSystem : MonoBehaviour
 
         if(hp <= 0)
         {
+            hp = 0;
             if (!isDeath)
             {
 
                 GetComponent<SaveSystem>().ResetParts();
                 animator.SetBool("Die", true);
                 Invoke("daeth", 3);
+                audioSource_battle.PlayOneShot(die);
                 isDeath = true;
             }
         }
@@ -90,7 +136,7 @@ public class BattleSystem : MonoBehaviour
     public void ArrowDamaged_Lv1()
     {
         hp -= 5;
-        audioSource.PlayOneShot(damaged);
+        audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
     }
@@ -100,7 +146,7 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 3;
-            audioSource.PlayOneShot(damaged);
+            audioSource_battle.PlayOneShot(damaged);
             animator.SetTrigger("damage");
             SaveHP();
         }
@@ -108,7 +154,7 @@ public class BattleSystem : MonoBehaviour
     public void ArrowDamaged_Lv2()
     {
         hp -= 6;
-        audioSource.PlayOneShot(damaged);
+        audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
     }
@@ -118,7 +164,7 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 4;
-            audioSource.PlayOneShot(damaged);
+            audioSource_battle.PlayOneShot(damaged);
             animator.SetTrigger("damage");
             SaveHP();
         }
@@ -129,7 +175,7 @@ public class BattleSystem : MonoBehaviour
         if (punch)
         {
             hp -= 6;
-            audioSource.PlayOneShot(damaged);
+            audioSource_battle.PlayOneShot(damaged);
             animator.SetTrigger("damage");
             SaveHP();
         }
@@ -137,7 +183,15 @@ public class BattleSystem : MonoBehaviour
     public void ArrowDamaged_Lv3()
     {
         hp -= 10;
-        audioSource.PlayOneShot(damaged);
+        audioSource_battle.PlayOneShot(damaged);
+        animator.SetTrigger("damage");
+        SaveHP();
+    }
+
+    public void LastBossAttack()
+    {
+        hp -= 30;
+        audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
     }
@@ -150,7 +204,7 @@ public class BattleSystem : MonoBehaviour
         GameObject.Find("DetaSaver").GetComponent<DateHold>().HPSave();
     }
 
-    void death()
+    void daeth()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

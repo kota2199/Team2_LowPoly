@@ -16,6 +16,12 @@ public class ItemGet : MonoBehaviour
     [SerializeField]
     Text messageText;
 
+    [SerializeField]
+    AudioClip itemGet_s;
+
+    [SerializeField]
+    AudioSource audioSource_getsound;
+
     string sort;
     // Start is called before the first frame update
     void Start()
@@ -44,44 +50,46 @@ public class ItemGet : MonoBehaviour
     {
         if (ID == 0)
         {
-            sort = "バッテリー";
+            sort = "工具";
         } else if (ID == 1)
         {
-
-        } else if (ID == 2)
+            sort = "消化器";
+        }
+        else if (ID == 2)
         {
-            sort = "";
+            sort = "燃料";
         }
         else if (ID == 3)
         {
-            sort = "";
+            sort = "加工された鉄";
         }
         else if (ID == 4)
         {
-            sort = "";
+            sort = "電動ドライバー";
         }
         else if (ID == 5)
         {
-            sort = "";
+            sort = "バッテリー";
         }
         else if (ID == 6)
         {
-            sort = "";
+            sort = "酸素ボンベ";
         }
         else if (ID == 7)
         {
-            sort = "";
+            sort = "無線機";
         }
         else if (ID == 8)
         {
-            sort = "";
+            sort = "モーター";
         }
         else if (ID == 9)
         {
-            sort = "";
+            sort = "制御用コンピューター";
         }
         messengers.SetActive(true);
         messageText.text = sort + "を獲得しました！";
+        audioSource_getsound.PlayOneShot(itemGet_s);
         Invoke("MessageFalse", 3);
     }
 

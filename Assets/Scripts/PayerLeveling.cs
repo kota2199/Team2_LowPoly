@@ -19,8 +19,8 @@ public class PayerLeveling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myLevel = 1;
-        myExp = 0;
+        myLevel = PlayerPrefs.GetInt("lv");
+        myExp = PlayerPrefs.GetInt("exp");
         detaSaver = GameObject.Find("DetaSaver");
     }
 
@@ -31,6 +31,11 @@ public class PayerLeveling : MonoBehaviour
         expText.text = "Exp:" + myExp.ToString() + "/" + maxExp.ToString();
         expSlider.value = myExp;
         expSlider.maxValue = maxExp;
+
+        if (myLevel == 0)
+        {
+            maxExp = 500;
+        }
         if (myLevel == 1)
         {
             maxExp = 1000;
@@ -74,6 +79,16 @@ public class PayerLeveling : MonoBehaviour
         }
     }
 
+    public void AddExp_Lv0(int givenExp)
+    {
+        myExp += 50 + givenExp;
+        if (myExp >= 500)
+        {
+            myLevel++;
+            myExp = 0;
+        }
+    }
+
     public void AddExp_Lv1(int givenExp)
     {
         myExp += 50 + givenExp;
@@ -82,10 +97,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
 
     public void AddExp_Lv2(int givenExp)
@@ -96,10 +107,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv3(int givenExp)
     {
@@ -109,10 +116,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv4(int givenExp)
     {
@@ -122,10 +125,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv5(int givenExp)
     {
@@ -135,10 +134,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv6(int givenExp)
     {
@@ -148,10 +143,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv7(int givenExp)
     {
@@ -161,10 +152,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv8(int givenExp)
     {
@@ -174,10 +161,6 @@ public class PayerLeveling : MonoBehaviour
             myLevel++;
             myExp = 0;
         }
-        detaSaver.GetComponent<DateHold>().myExp = myExp;
-        detaSaver.GetComponent<DateHold>().myLv = myLevel;
-        detaSaver.GetComponent<DateHold>().SaveLv();
-        detaSaver.GetComponent<DateHold>().SaveExp();
     }
     public void AddExp_Lv9(int givenExp)
     {
@@ -186,6 +169,10 @@ public class PayerLeveling : MonoBehaviour
         {
             myLevel++;
         }
+    }
+
+    public void SaveExpLv()
+    {
         detaSaver.GetComponent<DateHold>().myExp = myExp;
         detaSaver.GetComponent<DateHold>().myLv = myLevel;
         detaSaver.GetComponent<DateHold>().SaveLv();

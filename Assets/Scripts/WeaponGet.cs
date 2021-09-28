@@ -10,6 +10,8 @@ public class WeaponGet : MonoBehaviour
 
     public bool bomb, weapon2, weapon3;
 
+    int weapon2_i, weapon3_i;
+
     GameObject dateSaver;
 
     [SerializeField]
@@ -18,59 +20,75 @@ public class WeaponGet : MonoBehaviour
     [SerializeField]
     Text messageText;
 
+    [SerializeField]
+    AudioClip itemGet_s;
+
+    Animator animator;
+
+    [SerializeField]
+    AudioSource audioSource_getsound;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         dateSaver = GameObject.Find("DetaSaver");
-        bombs = dateSaver.GetComponent<DateHold>().bombs_s;
+        weapon2_i = PlayerPrefs.GetInt("we2");
+        weapon3_i = PlayerPrefs.GetInt("we3");
+        bombs = PlayerPrefs.GetInt("bombs");
+        if (weapon2_i < 1)
+        {
+            weapon2 = false;
+        } else
+        {
+            weapon2 = true;
+        }
+        if (weapon3_i < 1)
+        {
+            weapon3 = false;
+        }
+        else
+        {
+            weapon3 = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void GetWeapon2(GameObject item)
     {
-        if (dateSaver.GetComponent<DateHold>().weapon2_s >= 1)
-        {
-            weapon2 = true;
-        }
-        else
-        {
-            weapon2 = false;
-        }
-        if (dateSaver.GetComponent<DateHold>().weapon3_s >= 1)
-        {
-            weapon3 = true;
-        }
-        else
-        {
-            weapon3 = false;
-        }
-        if (other.gameObject.tag == "ArrowItem")
-        {
-            weapon2 = true;
-            messengers.SetActive(true);
-            messageText.text = "弓矢を獲得しました！";
-            Invoke("MessageFalse",3);
-            Destroy(other.gameObject);
-        }
-        if (other.gameObject.tag == "GunItem")
-        {
-            weapon3 = true;
-            messengers.SetActive(true);
-            messageText.text = "銃を獲得しました！";
-            Invoke("MessageFalse", 3);
-            Destroy(other.gameObject);
-        }
-        if (other.gameObject.tag == "BombItem")
-        {
-            bombs++;
-            messengers.SetActive(true);
-            messageText.text = "手榴弾を獲得しました！";
-            Invoke("MessageFalse", 3);
-        }
+        weapon2 = true;
+        messengers.SetActive(true);
+        messageText.text = "剣を獲得しました！";
+        audioSource_getsound.PlayOneShot(itemGet_s);
+        Invoke("MessageFalse", 3);
+        Destroy(item.gameObject);
+    }
+
+    public void GetWeapon3(GameObject item)
+    {
+        animator.SetTrigger("item");
+        weapon3 = true;
+        messengers.SetActive(true);
+        messageText.text = "銃を獲得しました！";
+        audioSource_getsound.PlayOneShot(itemGet_s);
+        Invoke("MessageFalse", 3);
+        Destroy(item.gameObject);
+    }
+
+    public void GetBomb(GameObject item)
+    {
+        bombs++;
+        messengers.SetActive(true);
+        messageText.text = "手榴弾を獲得しました！";
+        audioSource_getsound.PlayOneShot(itemGet_s);
+        Invoke("MessageFalse", 3);
+        Destroy(item.gameObject);
     }
     void MessageFalse()
     {

@@ -61,7 +61,43 @@ public class InventoryManager : MonoBehaviour
 
         if (p0)
         {
-            i1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Battery");
+            i1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Gear");
+        }
+        if (p1)
+        {
+            i2.GetComponent<Image>().sprite = Resources.Load<Sprite>("syoukaki");
+        }
+        if (p2)
+        {
+            i3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Fuel");
+        }
+        if (p3)
+        {
+            i4.GetComponent<Image>().sprite = Resources.Load<Sprite>("arrey");
+        }
+        if (p4)
+        {
+            i5.GetComponent<Image>().sprite = Resources.Load<Sprite>("ElectricDriver");
+        }
+        if (p5)
+        {
+            i6.GetComponent<Image>().sprite = Resources.Load<Sprite>("Battery");
+        }
+        if (p6)
+        {
+            i7.GetComponent<Image>().sprite = Resources.Load<Sprite>("O2");
+        }
+        if (p7)
+        {
+            i8.GetComponent<Image>().sprite = Resources.Load<Sprite>("musen");
+        }
+        if (p8)
+        {
+            i9.GetComponent<Image>().sprite = Resources.Load<Sprite>("motor");
+        }
+        if (p9)
+        {
+            i10.GetComponent<Image>().sprite = Resources.Load<Sprite>("computer");
         }
 
         if (p0 & p1 & p2)
@@ -74,7 +110,7 @@ public class InventoryManager : MonoBehaviour
             player.GetComponent<WarpFinalScript>().hasSta3Item = true;
         }
 
-        if (p0 & p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8 & p9)
+        if (p0 & p1 & p2 & p3 & p4 & p5 & p6 & p7 & p8)
         {
             player.GetComponent<WarpFinalScript>().hasAllItems = true;
         }

@@ -115,6 +115,9 @@ public class WarpFinalScript : MonoBehaviour
 
         SceneManager.LoadScene("");
 
+        GetComponent<WeaponGet>().WeaponSave();
+
+        GetComponent<PayerLeveling>().SaveExpLv();
     }
 
     IEnumerator ChangeStage1()
@@ -124,6 +127,10 @@ public class WarpFinalScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("Stage_1");
+
+        GetComponent<WeaponGet>().WeaponSave();
+
+        GetComponent<PayerLeveling>().SaveExpLv();
     }
 
     IEnumerator ChangeStage2()
@@ -133,6 +140,9 @@ public class WarpFinalScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("Stage_2");
+        GetComponent<WeaponGet>().WeaponSave();
+
+        GetComponent<PayerLeveling>().SaveExpLv();
 
     }
     IEnumerator ChangeStage3()
@@ -142,6 +152,9 @@ public class WarpFinalScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("Stage_3");
+        GetComponent<WeaponGet>().WeaponSave();
+
+        GetComponent<PayerLeveling>().SaveExpLv();
 
     }
 }

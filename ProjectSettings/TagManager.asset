@@ -15,11 +15,13 @@ TagManager:
   - ArrowItem
   - Item
   - ToStage1
+  - SwordItem
+  - LastBoss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProseccing
   - Water
   - UI
   - 

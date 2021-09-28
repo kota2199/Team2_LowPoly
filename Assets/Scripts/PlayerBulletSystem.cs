@@ -10,7 +10,8 @@ public class PlayerBulletSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(mother.transform.forward * 40 + new Vector3(0, 2, 0), ForceMode.Impulse);
+        GameObject cam = GameObject.Find("Main Camera");
+        GetComponent<Rigidbody>().AddForce(cam.transform.forward * 100, ForceMode.Impulse);
         Invoke("AutoDestroy", 3);
     }
 
@@ -24,45 +25,50 @@ public class PlayerBulletSystem : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            if (mother.GetComponent<PayerLeveling>().myLevel == 1)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 0)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 5;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 2)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 1)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 7;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 3)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 2)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 9;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 4)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 3)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 11;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 5)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 4)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 14;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 6)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 5)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 18;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 7)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 6)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 22;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 8)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 7)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 27;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 9)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 8)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 32;
             }
-            if (mother.GetComponent<PayerLeveling>().myLevel == 10)
+            if (mother.GetComponent<PayerLeveling>().myLevel == 9)
             {
                 other.GetComponent<EnemyBattle>().damagedHp = 38;
+            }
+
+            if (mother.GetComponent<PayerLeveling>().myLevel == 10)
+            {
+                other.GetComponent<EnemyBattle>().damagedHp = 40;
             }
             other.GetComponent<EnemyBattle>().GunDamaged();
             Destroy(this.gameObject);
@@ -70,6 +76,10 @@ public class PlayerBulletSystem : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             Destroy(this.gameObject);
+        }
+        if(other.gameObject.tag == "LastBoss")
+        {
+            other.gameObject.GetComponent<LastBossController>().ArrowDamaged();
         }
     }
     void AutoDestroy()
