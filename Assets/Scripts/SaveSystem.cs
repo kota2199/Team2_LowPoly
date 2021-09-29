@@ -7,7 +7,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField]
     private ItemDataBase itemDataBase;
 
-    bool[] savedParts = new bool[10];
+    public bool[] savedParts = new bool[10];
 
     [SerializeField]
     GameObject completeSaveText;
@@ -15,35 +15,34 @@ public class SaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(PlayerPrefs.GetInt("bootsnum") < 1)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                savedParts[i] = false;
+                itemDataBase.GetItemLists()[i].ReturnStatus(savedParts[i]);
+            }
+        } else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                savedParts[i] = itemDataBase.GetItemLists()[i].GetStatus();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.P))
-        {
-            for(int i = 0; i < 3; i++)
-            {
-                savedParts[i] = itemDataBase.GetItemLists()[i].GetStatus();
-            }
-        }
-        */
+
     }
 
-    public void ResetParts()
-    {
-        for(int i = 0; i < 10; i++)
-        {
-            itemDataBase.GetItemLists()[i].ReturnStatus(savedParts[i]);
-        }
-    }
 
     public void SaveButton()
     {
         for (int i = 0; i < 10; i++)
         {
-            savedParts[i] = itemDataBase.GetItemLists()[i].GetStatus();
+            itemDataBase.GetItemLists()[i].ReturnStatus(savedParts[i]);
         }
 
         GetComponent<WeaponGet>().WeaponSave();
@@ -51,7 +50,12 @@ public class SaveSystem : MonoBehaviour
         GetComponent<PayerLeveling>().SaveExpLv();
 
         completeSaveText.SetActive(true);
-        Invoke("TextFalse", 2);
+        Invoke("TextFalse", 1);
+    }
+
+    public void SetParts(int savenum)
+    {
+        savedParts[savenum] = true;
     }
 
     void TextFalse()

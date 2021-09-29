@@ -118,6 +118,8 @@ public class WarpFinalScript : MonoBehaviour
         GetComponent<WeaponGet>().WeaponSave();
 
         GetComponent<PayerLeveling>().SaveExpLv();
+
+        GameObject.Find("Player").GetComponent<SaveSystem>().SaveButton();
     }
 
     IEnumerator ChangeStage1()
@@ -131,6 +133,8 @@ public class WarpFinalScript : MonoBehaviour
         GetComponent<WeaponGet>().WeaponSave();
 
         GetComponent<PayerLeveling>().SaveExpLv();
+
+        GameObject.Find("Player").GetComponent<SaveSystem>().SaveButton();
     }
 
     IEnumerator ChangeStage2()
@@ -144,6 +148,9 @@ public class WarpFinalScript : MonoBehaviour
 
         GetComponent<PayerLeveling>().SaveExpLv();
 
+
+        GameObject.Find("Player").GetComponent<SaveSystem>().SaveButton();
+
     }
     IEnumerator ChangeStage3()
     {
@@ -155,6 +162,8 @@ public class WarpFinalScript : MonoBehaviour
         GetComponent<WeaponGet>().WeaponSave();
 
         GetComponent<PayerLeveling>().SaveExpLv();
+
+        GameObject.Find("Player").GetComponent<SaveSystem>().SaveButton();
 
     }
 }

@@ -48,49 +48,70 @@ public class ItemGet : MonoBehaviour
 
     public void GetText(int ID)
     {
-        if (ID == 0)
-        {
-            sort = "工具";
-        } else if (ID == 1)
+        if (ID == 1)
         {
             sort = "消化器";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 2)
         {
             sort = "燃料";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 3)
         {
             sort = "加工された鉄";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 4)
         {
             sort = "電動ドライバー";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 5)
         {
             sort = "バッテリー";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 6)
         {
             sort = "酸素ボンベ";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 7)
         {
             sort = "無線機";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 8)
         {
             sort = "モーター";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
         else if (ID == 9)
         {
             sort = "制御用コンピューター";
+            messengers.SetActive(true);
+            messageText.text = sort + "を獲得しました！";
+            Invoke("MessageFalse", 3);
         }
-        messengers.SetActive(true);
-        messageText.text = sort + "を獲得しました！";
         audioSource_getsound.PlayOneShot(itemGet_s);
-        Invoke("MessageFalse", 3);
     }
 
     void MessageFalse()

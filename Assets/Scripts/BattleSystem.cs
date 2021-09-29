@@ -85,9 +85,54 @@ public class BattleSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpText.text = "HP" + hp.ToString();
-        hpSlider.value = hp;
+        if (PlayerPrefs.GetInt("lv") == 0)
+        {
+            maxHP = 10;
+        }
+        if (PlayerPrefs.GetInt("lv") == 1)
+        {
+            maxHP = 13;
+        }
+        if (PlayerPrefs.GetInt("lv") == 2)
+        {
+            maxHP = 16;
+        }
+        if (PlayerPrefs.GetInt("lv") == 3)
+        {
+            maxHP = 19;
+        }
+        if (PlayerPrefs.GetInt("lv") == 4)
+        {
+            maxHP = 23;
+        }
+        if (PlayerPrefs.GetInt("lv") == 5)
+        {
+            maxHP = 27;
+        }
+        if (PlayerPrefs.GetInt("lv") == 6)
+        {
+            maxHP = 32;
+        }
+        if (PlayerPrefs.GetInt("lv") == 7)
+        {
+            maxHP = 36;
+        }
+        if (PlayerPrefs.GetInt("lv") == 8)
+        {
+            maxHP = 40;
+        }
+        if (PlayerPrefs.GetInt("lv") == 9)
+        {
+            maxHP = 45;
+        }
+        if (PlayerPrefs.GetInt("lv") == 10)
+        {
+            maxHP = 50;
+        }
+
+        hpText.text = "HP:" + hp.ToString() + "/" + maxHP.ToString();
         hpSlider.maxValue = maxHP;
+        hpSlider.value = hp;
 
         if(hp <= 0)
         {
@@ -95,7 +140,6 @@ public class BattleSystem : MonoBehaviour
             if (!isDeath)
             {
 
-                GetComponent<SaveSystem>().ResetParts();
                 animator.SetBool("Die", true);
                 Invoke("daeth", 3);
                 audioSource_battle.PlayOneShot(die);
@@ -118,18 +162,6 @@ public class BattleSystem : MonoBehaviour
         if (other.gameObject.tag == "EnemyPunchArea")
         {
             punch = false;
-        }
-        if (other.gameObject.tag == "Recovery")
-        {
-            if (hp >= maxHP - 1)
-            {
-                hp = maxHP;
-            }else
-            {
-                hp += 2;
-                SaveHP();
-            }
-            Destroy(other.gameObject);
         }
     }
 
@@ -194,6 +226,19 @@ public class BattleSystem : MonoBehaviour
         audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
+    }
+
+    public void Recover()
+    {
+        if (hp >= maxHP - 1)
+        {
+            hp = maxHP;
+        }
+        else
+        {
+            hp += 2;
+            SaveHP();
+        }
     }
 
     //敵側のEnemyBattle.cs内で指定したインターバルごとに関数が呼び出されてダメージを受ける

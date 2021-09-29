@@ -69,7 +69,9 @@ public class LastBossController : MonoBehaviour
                         Instantiate(dropItem, this.transform.position, Quaternion.identity);
                     }
                 }
-                PlayerPrefs.SetInt("BossCount", 1);
+                int deathCount = PlayerPrefs.GetInt("BossCount");
+                deathCount++;
+                PlayerPrefs.SetInt("BossCount", deathCount);
                 isDeath = true;
             }
         }

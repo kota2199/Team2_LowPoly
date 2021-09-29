@@ -209,10 +209,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6282208820028744151, guid: 9b2977c77413443eba3dc97f2940f42a, type: 3}
+      propertyPath: m_CustomSkybox
+      value: 
+      objectReference: {fileID: 2100000, guid: eea6dc32b86944868a305f6c94f8d7e4, type: 2}
     - target: {fileID: 6282208820183001104, guid: 9b2977c77413443eba3dc97f2940f42a, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8f8e209fa69454f33943cd5f73e2c5f9, type: 3}
+    - target: {fileID: 6282208820637211156, guid: 9b2977c77413443eba3dc97f2940f42a, type: 3}
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6282208820637211234, guid: 9b2977c77413443eba3dc97f2940f42a, type: 3}
       propertyPath: walkSpeed
       value: 1
@@ -794,7 +802,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You don' have enough parts!
+  m_Text: "\u307E\u3060\u3053\u306E\u30EF\u30FC\u30EB\u30C9\u306B\n\u30D1\u30FC\u30C4\u304C\u6B8B\u3063\u3066\u3044\u308B\u3088\u3046\u3067\u3059\uFF01"
 --- !u!222 &519779146
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -954,9 +962,21 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1923461889, guid: aeb4794909bc89d43b72ad784903e0f5, type: 3}
+      propertyPath: speed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923461889, guid: aeb4794909bc89d43b72ad784903e0f5, type: 3}
+      propertyPath: isItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923461889, guid: aeb4794909bc89d43b72ad784903e0f5, type: 3}
       propertyPath: itemNum
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1923461889, guid: aeb4794909bc89d43b72ad784903e0f5, type: 3}
+      propertyPath: attack_s
+      value: 
+      objectReference: {fileID: 8300000, guid: 42543fef027c347a28ffced418d891f4, type: 3}
     - target: {fileID: 1923461889, guid: aeb4794909bc89d43b72ad784903e0f5, type: 3}
       propertyPath: dropItem
       value: 
@@ -1881,12 +1901,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798166210, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: speed
-      value: 0.8
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1798166210, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: itemNum
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1798166210, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: attack_s
+      value: 
+      objectReference: {fileID: 8300000, guid: 42543fef027c347a28ffced418d891f4, type: 3}
     - target: {fileID: 1798166210, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: dropItem
       value: 
@@ -2239,9 +2263,21 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 988887298, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
+      propertyPath: speed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 988887298, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
+      propertyPath: isItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 988887298, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: itemNum
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 988887298, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
+      propertyPath: attack_s
+      value: 
+      objectReference: {fileID: 8300000, guid: 42543fef027c347a28ffced418d891f4, type: 3}
     - target: {fileID: 988887298, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: dropItem
       value: 

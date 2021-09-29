@@ -5,14 +5,23 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     float moveSpeed;
+
     [SerializeField] float walkSpeed;
-    float runSpeed = 0;
-    bool isRun;
+
+    float runSpeed = 1.2f;
+
+    bool isRun = false;
+
     Rigidbody playerBody;
+
     Vector3 inputDirection;
+
     private Animator animator;
+
     AudioSource audioSource;
+
     [SerializeField]
+
     AudioClip walking, running, jumping;
 
     bool walksound, runsound = true;
@@ -43,87 +52,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if (isRun)
+        //walk_forward
+        if (Input.GetKeyDown(KeyCode.W) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
-            runSpeed = 1.5f;
-        }
-        else
-        {
-            runSpeed = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && canJump && !GetComponent<BattleSystem>().isDeath && !stopWalk)
-        {
-            playerBody.AddForce(new Vector3(0, 80, 0), ForceMode.Impulse);
-            audioSource.PlayOneShot(jumping);
-            animator.SetBool("jump", true);
-            canJump = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
-        {
-            isRun = true;
-            animator.SetInteger("run", 1);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
-        {
-            walksound = false;
-            StopWalkingSound();
-            if (runsound)
-            {
-                RunningSound();
-                running_s_length = running.length;
-                runsound = false;
-            }
-            running_s_length -= Time.deltaTime;
-            if (running_s_length <= 0)
-            {
-                RunningSound();
-                running_s_length = running.length;
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
-        {
-            runsound = false;
-            walksound = true;
-            isRun = false;
-            animator.SetInteger("run", 0);
-        }
-
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
-        {
-            transform.position += transform.forward * walkSpeed * runSpeed;
-        }
-
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
-        {
-            transform.position += transform.forward * walkSpeed * runSpeed;
             animator.SetInteger("walk", 1);
-            if (walksound)
-            {
-                WalkingSound();
-                walk_s_length = walking.length;
-                walksound = false;
-            }
-            walk_s_length -= Time.deltaTime;
-            if (walk_s_length <= 0)
-            {
-                WalkingSound();
-                walk_s_length = walking.length;
-            }
         }
-        if (Input.GetKeyUp(KeyCode.W) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        if (Input.GetKey(KeyCode.W) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
-            StopWalkingSound();
-            animator.SetInteger("walk", 0);
-            animator.SetInteger("run", 0);
-            audioSource.Stop();
-        }
-
-        if (Input.GetKey(KeyCode.S) && !GetComponent<BattleSystem>().isDeath)
-        {
-            transform.position -= transform.forward * walkSpeed * runSpeed;
-            animator.SetInteger("walk", 1);
+            transform.position += transform.forward * walkSpeed * Time.deltaTime;
             if (walksound)
             {
                 WalkingSound();
@@ -139,44 +75,155 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.S) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
         {
+            animator.SetInteger("walk", 0);
+            audioSource.Stop();
+            StopWalkingSound();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            animator.SetInteger("walk", 1);
+        }
+        if (Input.GetKey(KeyCode.S) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            transform.position -= transform.forward * walkSpeed * Time.deltaTime;
+            if (walksound)
+            {
+                WalkingSound();
+                walk_s_length = walking.length;
+                walksound = false;
+            }
+            walk_s_length -= Time.deltaTime;
+            if (walk_s_length <= 0)
+            {
+                WalkingSound();
+                walk_s_length = walking.length;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.W) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            animator.SetInteger("walk", 0);
+            audioSource.Stop();
+            StopWalkingSound();
+        }
+
+        //run_switch
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            isRun = true;
+            animator.SetInteger("run", 1);
+            runsound = true;
+            walksound = false;
+            StopWalkingSound();
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            isRun = false;
+            animator.SetInteger("run", 0);
+            runsound = false;
+            walksound = true;
+            StopRunningSound();
+        }
+
+        //running
+        //forward
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            transform.position += transform.forward * walkSpeed * runSpeed * Time.deltaTime;
+            if (runsound)
+            {
+                RunningSound();
+                running_s_length = running.length;
+                runsound = false;
+            }
+            running_s_length -= Time.deltaTime;
+            if (running_s_length <= 0)
+            {
+                RunningSound();
+                running_s_length = running.length;
+            }
+        }
+
+        //back
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.LeftShift) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            transform.position -= transform.forward * walkSpeed * runSpeed * Time.deltaTime; if (runsound)
+            if(runsound)
+            {
+                RunningSound();
+                running_s_length = running.length;
+                runsound = false;
+            }
+            running_s_length -= Time.deltaTime;
+            if (running_s_length <= 0)
+            {
+                RunningSound();
+                running_s_length = running.length;
+            }
+        }
+
+        //jump
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            playerBody.AddForce(new Vector3(0, 120, 0), ForceMode.Impulse);
+            audioSource.PlayOneShot(jumping);
+            animator.SetBool("jump", true);
+            canJump = false;
+        }
+
+        //right
+        if (Input.GetKey(KeyCode.A) && !GetComponent<BattleSystem>().isDeath)
+        {
+            transform.position -= transform.right * walkSpeed * Time.deltaTime;
+            animator.SetInteger("walk", 1);
+            if (walksound)
+            {
+                WalkingSound();
+                walk_s_length = walking.length;
+                walksound = false;
+            }
+            walk_s_length -= Time.deltaTime;
+            if (walk_s_length <= 0)
+            {
+                WalkingSound();
+                walk_s_length = walking.length;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.A) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
             StopWalkingSound();
             animator.SetInteger("walk", 0);
             animator.SetInteger("run", 0);
             audioSource.Stop();
         }
-        /*else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+
+        //left
+        if (Input.GetKey(KeyCode.D) && !GetComponent<BattleSystem>().isDeath)
         {
-            transform.position += new Vector3(0, 0, 0);
+            transform.position += transform.right * walkSpeed * Time.deltaTime;
+            animator.SetInteger("walk", 1);
+            if (walksound)
+            {
+                WalkingSound();
+                walk_s_length = walking.length;
+                walksound = false;
+            }
+            walk_s_length -= Time.deltaTime;
+            if (walk_s_length <= 0)
+            {
+                WalkingSound();
+                walk_s_length = walking.length;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.D) && !GetComponent<BattleSystem>().isDeath && !stopWalk)
+        {
+            StopWalkingSound();
+            animator.SetInteger("walk", 0);
+            animator.SetInteger("run", 0);
+            audioSource.Stop();
         }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += -transform.right * walkSpeed * runSpeed;
-        }
-        else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(0, 0, 0);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += -transform.forward * walkSpeed * runSpeed;
-        }
-        else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(0, 0, 0);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += transform.right * walkSpeed * runSpeed;
-        }
-        else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
-        {
-            transform.position += new Vector3(0, 0, 0);
-        }
-        */
-        if (playerBody.velocity.magnitude > 0.1f)
+        if (playerBody.velocity.magnitude > 0.03f)
         {
             if (!footsmoke.isEmitting)
             {

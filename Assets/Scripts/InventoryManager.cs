@@ -58,44 +58,44 @@ public class InventoryManager : MonoBehaviour
         p7 = itemDataBase.GetItemLists()[7].GetStatus();
         p8 = itemDataBase.GetItemLists()[8].GetStatus();
         p9 = itemDataBase.GetItemLists()[9].GetStatus();
-
-        if (p0)
+        
+        if (player.GetComponent<SaveSystem>().savedParts[0])
         {
             i1.GetComponent<Image>().sprite = Resources.Load<Sprite>("Gear");
         }
-        if (p1)
+        if (player.GetComponent<SaveSystem>().savedParts[1])
         {
             i2.GetComponent<Image>().sprite = Resources.Load<Sprite>("syoukaki");
         }
-        if (p2)
+        if (player.GetComponent<SaveSystem>().savedParts[2])
         {
             i3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Fuel");
         }
-        if (p3)
+        if (player.GetComponent<SaveSystem>().savedParts[3])
         {
             i4.GetComponent<Image>().sprite = Resources.Load<Sprite>("arrey");
         }
-        if (p4)
+        if (player.GetComponent<SaveSystem>().savedParts[4])
         {
             i5.GetComponent<Image>().sprite = Resources.Load<Sprite>("ElectricDriver");
         }
-        if (p5)
+        if (player.GetComponent<SaveSystem>().savedParts[5])
         {
             i6.GetComponent<Image>().sprite = Resources.Load<Sprite>("Battery");
         }
-        if (p6)
+        if (player.GetComponent<SaveSystem>().savedParts[6])
         {
             i7.GetComponent<Image>().sprite = Resources.Load<Sprite>("O2");
         }
-        if (p7)
+        if (player.GetComponent<SaveSystem>().savedParts[7])
         {
             i8.GetComponent<Image>().sprite = Resources.Load<Sprite>("musen");
         }
-        if (p8)
+        if (player.GetComponent<SaveSystem>().savedParts[8])
         {
             i9.GetComponent<Image>().sprite = Resources.Load<Sprite>("motor");
         }
-        if (p9)
+        if (player.GetComponent<SaveSystem>().savedParts[9])
         {
             i10.GetComponent<Image>().sprite = Resources.Load<Sprite>("computer");
         }

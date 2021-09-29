@@ -29,11 +29,10 @@ public class ItemIdentify : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //int id = other.GetComponent<ItemIdentify>().myID;
-            itemDataBase.GetItemLists()[myID].SetStatus();
-            Destroy(this.gameObject);
+            //itemDataBase.GetItemLists()[myID].SetStatus();
+            other.gameObject.GetComponent<SaveSystem>().SetParts(myID);
             other.gameObject.GetComponent<ItemGet>().GetText(myID);
-            other.gameObject.GetComponent<PlayerController>().stopWalk = true;
+            Destroy(this.gameObject);
         }
     }
 

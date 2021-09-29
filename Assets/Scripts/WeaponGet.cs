@@ -90,6 +90,17 @@ public class WeaponGet : MonoBehaviour
         Invoke("MessageFalse", 3);
         Destroy(item.gameObject);
     }
+
+    public void GetRecover(GameObject item)
+    {
+        GetComponent<BattleSystem>().Recover();
+        messengers.SetActive(true);
+        messageText.text = "HPを回復しました！";
+        audioSource_getsound.PlayOneShot(itemGet_s);
+        Invoke("MessageFalse", 3);
+        Destroy(item.gameObject);
+    }
+
     void MessageFalse()
     {
         messengers.SetActive(false);

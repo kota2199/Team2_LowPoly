@@ -24,11 +24,8 @@ public class ItemManager : MonoBehaviour
 			Debug.Log(itemDataBase.GetItemLists()[i].GetItemName() + ": " + itemDataBase.GetItemLists()[i].GetInformation());
 		}
 
-		/*Debug.Log(GetItem("ナイフ").GetInformation());
-		Debug.Log(numOfItem[GetItem("ハーブ")]);
-		*/
-		EditorUtility.SetDirty(itemDataBase);
-		AssetDatabase.SaveAssets();
+		//EditorUtility.SetDirty(itemDataBase);
+		//AssetDatabase.SaveAssets();
 	}
 
 	//　名前でアイテムを取得

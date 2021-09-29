@@ -60,6 +60,15 @@ public class EnemyBattle : MonoBehaviour
     [SerializeField]
     GameObject launchSpot;
 
+    [SerializeField]
+    AudioSource audioSource;
+
+    [SerializeField]
+    AudioSource wingSource;
+
+    [SerializeField]
+    AudioClip start_s, dead_s, wing_s, attack_s;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +77,7 @@ public class EnemyBattle : MonoBehaviour
         damagedHp = 0;
         //初期化
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -79,6 +89,7 @@ public class EnemyBattle : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(target.transform.position - transform.position), 0.3f);
             transform.localPosition += transform.forward * speed;
+            wingSource.Play();
         }
         else
         {
@@ -250,11 +261,14 @@ public class EnemyBattle : MonoBehaviour
                 {
                     GetComponent<ReturnTutorial>().ToTutorial();
                 }
-
+                audioSource.PlayOneShot(dead_s);
+                wingSource.Stop();
+                fightning = false;
+                StopCoroutine("Attack");
+                StopCoroutine("PunchStart");
+                Invoke("Destroy", 5);
                 isdeath = false;
             }
-            StopCoroutine("Attack");
-            Invoke("Destroy", 5);
 
             //もしHPが0を下回った際、レベルに応じて得られるExpを変えて付与
         }
@@ -263,6 +277,7 @@ public class EnemyBattle : MonoBehaviour
     public void PunchDamaged()
     {
         hp -= damagedHp;
+        audioSource.PlayOneShot(attack_s);
         animator.SetTrigger("Damaged");
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
@@ -273,6 +288,7 @@ public class EnemyBattle : MonoBehaviour
     public void SwordDamaged()
     {
         hp -= damagedHp;
+        audioSource.PlayOneShot(attack_s);
         animator.SetTrigger("Damaged");
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
@@ -284,6 +300,7 @@ public class EnemyBattle : MonoBehaviour
     public void GunDamaged()
     {
         hp -= damagedHp;
+        audioSource.PlayOneShot(attack_s);
         animator.SetTrigger("Damaged");
         damagedHpText_go.SetActive(true);
         damagedHpText.text = damagedHp.ToString();
@@ -307,7 +324,7 @@ public class EnemyBattle : MonoBehaviour
             fightning = true;
             target = other.gameObject;
             StartCoroutine("Attack");
-
+            audioSource.PlayOneShot(start_s);
             //プレイヤーの子であるColliderに接触すると戦闘が始まる。
         }
         if (other.gameObject.tag == "PunchArea")

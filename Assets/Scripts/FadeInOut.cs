@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;  //透明化の速さ
+    public float speed;  //透明化の速さ
     float inalfa;    //A値を操作するための変数
     float outalfa;
     float inred, ingreen, inblue;

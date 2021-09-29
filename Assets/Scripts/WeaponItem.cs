@@ -34,6 +34,9 @@ public class WeaponItem : MonoBehaviour
             } else if (weaponId == 4)
             {
                 other.GetComponent<WeaponGet>().GetBomb(this.gameObject);
+            } else if(weaponId == 5)
+            {
+                other.GetComponent<WeaponGet>().GetRecover(this.gameObject);
             }
         }
     }

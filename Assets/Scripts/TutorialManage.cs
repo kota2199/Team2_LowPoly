@@ -47,17 +47,23 @@ public class TutorialManage : MonoBehaviour
 
     public IEnumerator NextTutorial()
     {
-        messageText.text = "敵を倒しました！敵を倒すと船の修理に必要なパーツや、様々なアイテムを獲得できます。";
+        messengers.SetActive(true);
+        messageText.text = "モンスターを倒しました！\nモンスターを倒すと船の修理に必要なパーツや、武器などのアイテムを獲得できます。";
         yield return new WaitForSeconds(5);
-        messageText.text = "また、敵を倒すとExpを獲得でき、\nゲージが満タンになるとレベルが上がります！";
+        messageText.text = "また、モンスターを倒すとExpを獲得でき、\nゲージが満タンになるとレベルが上がります！";
         yield return new WaitForSeconds(5);
-        messageText.text = "レベルが上がると防御力や攻撃力が上がり、より強い敵を倒すことが出来るようになります！";
+        messageText.text = "レベルが上がると防御力や攻撃力が上がり、より強いモンスターを倒すことが出来るようになります！";
+        yield return new WaitForSeconds(5);
+        messageText.text = "最後に、Escapeキーを押すとメニューが表示され、\nセーブをすることができます！";
+        yield return new WaitForSeconds(5);
+        messageText.text = "モンスターに倒されると最後にセーブした状態まで戻ってしまします。\nこまめなセーブを！";
         yield return new WaitForSeconds(5);
         messageText.text = "それでは、頑張ってパーツを集めてこの星から脱出しましょう！健闘を祈ります！";
         yield return new WaitForSeconds(5);
         messageText.text = "";
         messengers.SetActive(false);
         GameObject.Find("DetaSaver").GetComponent<DateHold>().Boot();
+        GameObject.Find("Player").GetComponent<SaveSystem>().SaveButton();
     }
 
     void TutorialJudge()
