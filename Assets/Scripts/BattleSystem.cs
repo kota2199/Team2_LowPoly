@@ -167,7 +167,7 @@ public class BattleSystem : MonoBehaviour
 
     public void ArrowDamaged_Lv1()
     {
-        hp -= 5;
+        hp -= 3;
         audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
@@ -177,7 +177,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (punch)
         {
-            hp -= 3;
+            hp -= 2;
             audioSource_battle.PlayOneShot(damaged);
             animator.SetTrigger("damage");
             SaveHP();
@@ -185,7 +185,7 @@ public class BattleSystem : MonoBehaviour
     }
     public void ArrowDamaged_Lv2()
     {
-        hp -= 6;
+        hp -= 7;
         audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
@@ -206,7 +206,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (punch)
         {
-            hp -= 6;
+            hp -= 8;
             audioSource_battle.PlayOneShot(damaged);
             animator.SetTrigger("damage");
             SaveHP();
@@ -214,7 +214,7 @@ public class BattleSystem : MonoBehaviour
     }
     public void ArrowDamaged_Lv3()
     {
-        hp -= 10;
+        hp -= 12;
         audioSource_battle.PlayOneShot(damaged);
         animator.SetTrigger("damage");
         SaveHP();
